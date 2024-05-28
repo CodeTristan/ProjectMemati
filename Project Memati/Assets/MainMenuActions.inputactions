@@ -1,0 +1,65 @@
+{
+    "name": "MainMenuActions",
+    "maps": [
+        {
+            "name": "CreatePlayer",
+            "id": "a661a975-7119-432b-9592-6aff0c831170",
+            "actions": [
+                {
+                    "name": "CreatePlayerKeyboard",
+                    "type": "Button",
+                    "id": "08d2da62-4313-475c-a95a-ad3d191e0704",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CreatePlayerGamepad",
+                    "type": "Button",
+                    "id": "d9f03d05-114c-48e6-918e-fbcff0538b85",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a80186fc-54a2-48f7-9a03-578a5aa719eb",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CreatePlayerKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00de4a8d-0f91-48f0-a311-f928223a8b63",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CreatePlayerGamepad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6c11e50e-407f-4192-ac3b-6cc9deb456b1",
+                    "path": "<HID:: USB Gamepad          >/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CreatePlayerGamepad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
