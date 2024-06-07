@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    //Enables mainmenu actions input system 
+    //MainMenu kontrollerini etkinleþtirir. Input system.
     public void EnableMainMenuActions()
     {
         mainMenuActions.Enable();
@@ -44,7 +44,7 @@ public class PlayerManager : MonoBehaviour
         //mainMenuActions.CreatePlayer.CreatePlayerGamepad.performed += CreatePlayerGamepad;
     }
 
-    //Disables mainmenu actions input system 
+    //MainMenu kontrollerini devredýþý býrakýr. Input system.
     public void DisableMainMenuActions()
     {
         mainMenuActions.CreatePlayer.CreatePlayerKeyboard.performed -= CreatePlayerKeyboard;
@@ -53,7 +53,7 @@ public class PlayerManager : MonoBehaviour
         mainMenuActions.CreatePlayer.Disable();
     }
 
-    //Creates player for keyboard. Max 2 Players allowed
+    //Klavye için oyuncu yaratýr. Maksimum 2 tane oyuncu olabilir klavyeden.
     public void CreatePlayerKeyboard(InputAction.CallbackContext context)
     {
         keyboardPlayerCount++;
@@ -72,7 +72,7 @@ public class PlayerManager : MonoBehaviour
         PlayerControl player = Instantiate(playerPrefab,spawnPos,Quaternion.identity);
     }
 
-    //
+    //Gamepad için oyuncu yaratýr.
     public void CreatePlayerGamepad()
     {
         spawnPos += new Vector3(3, 0, 0);

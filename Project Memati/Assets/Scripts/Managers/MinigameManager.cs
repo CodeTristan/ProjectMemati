@@ -19,6 +19,8 @@ public class MinigameManager : MonoBehaviour
        
     }
 
+
+    //Rastgele þekilde MaxCount kadar minigameleri seçer ve selectedMinigames listesine ekler. Tüm minigamelerden 1 tane olunca tekrar listeyi doldurur.
     public void SelectMinigames()
     {
         //Ui ile implemente edilecek.
@@ -30,7 +32,7 @@ public class MinigameManager : MonoBehaviour
             minigameBases.RemoveAt(random);
             if(minigameBases.Count == 0)
             {
-                minigameBases = minigames.ToList();
+                minigameBases = minigames.ToList(); //Minigameleri tekrar listeye ekler ve Full liste içerisinden seçilmeye devam eder.
             }
         }
     }

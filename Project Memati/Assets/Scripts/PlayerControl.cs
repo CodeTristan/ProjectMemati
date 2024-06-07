@@ -22,6 +22,8 @@ public class PlayerControl : MonoBehaviour
         KeyboardRight,
         Gamepad
     }
+
+    //Control device türüne göre kontrolleri açar.
     public void Init(ControlDevice controlDevice)
     {
         inputActions = new PlayerActions();
@@ -51,6 +53,7 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    //Collision olursa bu kod içerisinde kontrol edilmesi lazým. Collision'a giriþte burasý çalýþýr.
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Ground")
@@ -59,6 +62,8 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+
+    //Collision olursa bu kod içerisinde kontrol edilmesi lazým. Collision'dan çýkýþta burasý çalýþýr.
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -67,15 +72,20 @@ public class PlayerControl : MonoBehaviour
             jumpInput = 0;
         }
     }
+
+    //Hýzý ayarlama.
     private void FixedUpdate()
     {
         rb.velocity = new Vector3(moveInput.x * speed, rb.velocity.y + jumpInput,moveInput.y * speed);
     }
+
+    //Input system event'ine subscribe olmak için yazýlan kod. Aygýttan gelen deðeri okuyup moveInput'a atar.
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
     }
 
+    //Input system event'ine subscribe olmak için yazýlan kod. Eðer ki karakter yerdeyse zýplatýlýr.
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!isGrounded) return;
@@ -83,6 +93,7 @@ public class PlayerControl : MonoBehaviour
         jumpInput = jumpPower;
     }
 
+    //Debug mesaj atmak için
     public void DebugMsg(string msg)
     {
         Debug.Log(msg);
