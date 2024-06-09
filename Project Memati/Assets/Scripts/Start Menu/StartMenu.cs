@@ -8,7 +8,8 @@ public class StartMenu : MonoBehaviour
     public void StartGame()
 
     {
-        SceneManager.LoadScene(1); // Loading Lobby Scene
+          SceneManager.LoadScene("LobbyMenu"); // StartMenu sahnesine geçiþ yap
+
     }
 
     public void QuitGame()
