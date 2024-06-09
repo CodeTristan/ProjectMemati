@@ -145,3 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amkskoru: 10
+  eatBurger: {fileID: -9085381068263898226, guid: b57bbacec8c8feb4486ce9ca5fa0f3bf, type: 3}
