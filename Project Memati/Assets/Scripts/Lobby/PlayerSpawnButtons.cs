@@ -10,6 +10,12 @@ public class PlayerSpawnButtons : MonoBehaviour
 
     void Start()
     {
+        // Baþlangýçta sadece ilk oyuncunun butonlarýný aktif yap
+        /*for (int i = 0; i < playerControls.Length; i++)
+        {
+            playerControls[i].SetActive(i == 0);
+        }*/
+
 
 
     }
