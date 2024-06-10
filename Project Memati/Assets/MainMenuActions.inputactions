@@ -57,6 +57,17 @@
                     "action": "CreatePlayerGamepad",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c5e0bb6-5287-4424-aa1e-f8616e10e23e",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CreatePlayerGamepad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

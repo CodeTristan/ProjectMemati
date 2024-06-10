@@ -14,7 +14,7 @@ public class CharacterSpawner : MonoBehaviour
     public Button startButton;      // Start butonu
 
     private GameObject[] currentCharacters; // Mevcut karakterler
-    private int[] currentCharacterIndices;  // Mevcut karakter indeksleri
+    private int[] currentCharacterIndexes;  // Mevcut karakter indeksleri
     private bool[] isChangingCharacter; // Her boru için karakter deðiþimi durumu
     private bool isDropping = false;    // Düþme iþlemi durumu
     private int currentIndex = 0; // Þu anki karakterin indeksi
@@ -22,7 +22,7 @@ public class CharacterSpawner : MonoBehaviour
     void Start()
     {
         currentCharacters = new GameObject[dropPoints.Length];
-        currentCharacterIndices = new int[dropPoints.Length];
+        currentCharacterIndexes = new int[dropPoints.Length];
         isChangingCharacter = new bool[dropPoints.Length]; // Her boru için bayrak baþlat
 
         // Baþlangýçta sadece ilk karakteri ekle
@@ -30,13 +30,13 @@ public class CharacterSpawner : MonoBehaviour
         {
             if (i == 0)
             {
-                currentCharacterIndices[i] = 0;
-                SpawnCharacterAt(i, currentCharacterIndices[i]);
+                currentCharacterIndexes[i] = 0;
+                SpawnCharacterAt(i, currentCharacterIndexes[i]);
             }
             else
             {
                 currentCharacters[i] = null;
-                currentCharacterIndices[i] = -1; // Baþlangýçta indeksler geçersiz
+                currentCharacterIndexes[i] = -1; // Baþlangýçta indeksler geçersiz
             }
         }
 
@@ -62,8 +62,8 @@ public class CharacterSpawner : MonoBehaviour
         if (currentIndex < currentCharacters.Length - 1)
         {
             currentIndex++;
-            currentCharacterIndices[currentIndex] = 0; // Ýlk karakterle baþla
-            SpawnCharacterAt(currentIndex, currentCharacterIndices[currentIndex]);
+            currentCharacterIndexes[currentIndex] = 0; // Ýlk karakterle baþla
+            SpawnCharacterAt(currentIndex, currentCharacterIndexes[currentIndex]);
         }
     }
 
@@ -74,7 +74,7 @@ public class CharacterSpawner : MonoBehaviour
         {
             Destroy(currentCharacters[currentIndex]);
             currentCharacters[currentIndex] = null;
-            currentCharacterIndices[currentIndex] = -1; // Ýndeksi geçersiz yap
+            currentCharacterIndexes[currentIndex] = -1; // Ýndeksi geçersiz yap
             currentIndex--;
         }
     }
@@ -82,7 +82,7 @@ public class CharacterSpawner : MonoBehaviour
     // Karakteri deðiþtir
     void ChangeCharacter(int index, int direction)
     {
-        if (isChangingCharacter[index] || currentCharacterIndices[index] == -1)
+        if (isChangingCharacter[index] || currentCharacterIndexes[index] == -1)
         {
             return; // Halen karakter deðiþimi yapýlýyorsa veya geçersiz indeksse iþlemi durdur
         }
@@ -102,10 +102,10 @@ public class CharacterSpawner : MonoBehaviour
         }
 
         // Bir sonraki veya önceki karaktere geç
-        currentCharacterIndices[index] = (currentCharacterIndices[index] + direction + characters.Length) % characters.Length;
+        currentCharacterIndexes[index] = (currentCharacterIndexes[index] + direction + characters.Length) % characters.Length;
 
         // Yeni karakteri instantiate et ve yerine düþür
-        SpawnCharacterAt(index, currentCharacterIndices[index]);
+        SpawnCharacterAt(index, currentCharacterIndexes[index]);
         yield return StartCoroutine(DropCharacter(currentCharacters[index], dropPoints[index].position));
 
         isChangingCharacter[index] = false; // Karakter deðiþimi iþlemi tamamlandý
@@ -116,6 +116,7 @@ public class CharacterSpawner : MonoBehaviour
     {
         currentCharacters[index] = Instantiate(characters[characterIndex], spawnPoints[index].position, Quaternion.identity);
         currentCharacters[index].transform.Rotate(0, 180, 0);
+        currentCharacters[index].gameObject.AddComponent<CapsuleCollider>();
         StartCoroutine(DropCharacter(currentCharacters[index], dropPoints[index].position));
     }
 

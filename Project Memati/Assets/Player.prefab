@@ -144,7 +144,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6514263654244292565}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -197,13 +197,10 @@ MonoBehaviour:
           m_StringArgument: control changed
           m_BoolArgument: 0
         m_CallState: 2
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 5065076864093195167}
-        m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -212,6 +209,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
     m_ActionId: 77dbdc4d-37c9-44f2-9d27-3b45f3383279
     m_ActionName: General/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -219,19 +219,7 @@ MonoBehaviour:
     m_ActionId: c3c4fd5d-e839-4254-82d4-de9974660430
     m_ActionName: General/Punch[/Keyboard/f,/Keyboard/quote]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5065076864093195167}
-        m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 72575672-232d-4a35-9efa-bbdc80a6b175
     m_ActionName: KeyboardRight/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -239,19 +227,7 @@ MonoBehaviour:
     m_ActionId: 5fa8f484-ab1e-462e-93e0-21e360189dce
     m_ActionName: KeyboardRight/Punch[/Keyboard/quote]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5065076864093195167}
-        m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: ba2a0e2e-11e1-4a8e-9adb-25c1f26a88df
     m_ActionName: Gamepad/Move
   - m_PersistentCalls:
@@ -288,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6005630198762075184}
+  playerId: 0
   speed: 5
   jumpPower: 3
   isGrounded: 0

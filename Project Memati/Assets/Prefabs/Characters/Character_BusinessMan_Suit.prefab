@@ -2062,6 +2062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4335510687200152}
   - component: {fileID: 95100772246247374}
+  - component: {fileID: -6179320672838589713}
   m_Layer: 0
   m_Name: Character_BusinessMan_Suit
   m_TagString: Untagged
@@ -2115,6 +2116,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &-6179320672838589713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784647339104494}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.8042138, z: 1}
+  m_Center: {x: 0, y: 0.93150055, z: 0}
 --- !u!1 &1798790759091228
 GameObject:
   m_ObjectHideFlags: 0
