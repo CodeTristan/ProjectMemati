@@ -12,9 +12,18 @@ public class PlayerControl : MonoBehaviour
     public float jumpPower;
     public bool isGrounded;
 
+    public InputDevice device;
+
+    public Transform MainCameraTransform;
+    public Vector3 dampedTargetRotationPassedTime;
+    public Vector3 dampedTargetRotationCurrentVelocity;
+    public Vector3 dampedTargetRotationPassedPassedTime;
+    public Vector3 timeToReachTargetRotation;
+
     private Vector2 moveInput;
     private float jumpInput;
     private PlayerActions inputActions;
+    private Vector3 currentTargetRotation;
 
     public enum ControlDevice
     {
@@ -28,14 +37,14 @@ public class PlayerControl : MonoBehaviour
     {
         inputActions = new PlayerActions();
 
-        if(controlDevice == ControlDevice.KeyboardLeft)
+        if (controlDevice == ControlDevice.KeyboardLeft)
         {
             inputActions.KeyboardLeft.Enable();
             inputActions.KeyboardLeft.Move.Enable();
             inputActions.KeyboardLeft.Move.performed += OnMove;
             inputActions.KeyboardLeft.Jump.performed += OnJump;
         }
-        else if(controlDevice == ControlDevice.KeyboardRight)
+        else if (controlDevice == ControlDevice.KeyboardRight)
         {
             inputActions.KeyboardRight.Enable();
             inputActions.KeyboardRight.Move.Enable();
@@ -56,7 +65,7 @@ public class PlayerControl : MonoBehaviour
     //Collision olursa bu kod içerisinde kontrol edilmesi lazým. Collision'a giriþte burasý çalýþýr.
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
         }
@@ -76,13 +85,26 @@ public class PlayerControl : MonoBehaviour
     //Hýzý ayarlama.
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(moveInput.x * speed, rb.velocity.y + jumpInput,moveInput.y * speed);
+        if (moveInput == Vector2.zero || speed == 0f)
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+            return;
+        }
+        Vector3 MovementDirection = new Vector3(moveInput.x, 0f, moveInput.y);
+        float targetRotationYAngle = Rotate(MovementDirection);
+        Vector3 targetRotationDirection = GetTargetRotationDirection(targetRotationYAngle);
+
+        Debug.Log(targetRotationDirection.x);
+        rb.velocity = new Vector3(targetRotationDirection.x * speed, rb.velocity.y + jumpInput, targetRotationDirection.z * speed);
+        Debug.Log(moveInput + "vector2");
+        Debug.Log(targetRotationDirection.z + "vector3");
     }
 
     //Input system event'ine subscribe olmak için yazýlan kod. Aygýttan gelen deðeri okuyup moveInput'a atar.
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>();
+        if (context.control.device.deviceId == device.deviceId)
+            moveInput = context.ReadValue<Vector2>();
     }
 
     //Input system event'ine subscribe olmak için yazýlan kod. Eðer ki karakter yerdeyse zýplatýlýr.
@@ -90,12 +112,85 @@ public class PlayerControl : MonoBehaviour
     {
         if (!isGrounded) return;
 
-        jumpInput = jumpPower;
+        if (context.control.device.deviceId == device.deviceId)
+            jumpInput = jumpPower;
     }
 
     //Debug mesaj atmak için
     public void DebugMsg(string msg)
     {
         Debug.Log(msg);
+    }
+
+    private float AddCameraRotationToAngle(float angle)
+    {
+        angle += MainCameraTransform.eulerAngles.y;
+        if (angle > 360)
+        {
+            angle -= 360f;
+        }
+
+        return angle;
+    }
+
+    private void UpdateTargetRotationData(float targetAngle)
+    {
+        currentTargetRotation.y = targetAngle;
+        dampedTargetRotationPassedPassedTime.y = 0f;
+    }
+
+    private float UpdateTargetRotation(Vector3 direction)
+    {
+        float directionAngle = GetDirectionAngle(direction);
+
+        directionAngle = AddCameraRotationToAngle(directionAngle);
+
+        if (directionAngle != currentTargetRotation.y)
+        {
+            UpdateTargetRotationData(directionAngle);
+        }
+
+        return directionAngle;
+    }
+
+    private static float GetDirectionAngle(Vector3 direction)
+    {
+        float directionAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+
+        if (directionAngle < 0f)
+        {
+            directionAngle += 360;
+        }
+
+        return directionAngle;
+    }
+
+    private void RotateTowardsTargetRotation()
+    {
+        float currentYAngle = rb.rotation.eulerAngles.y;
+
+        if (currentYAngle == currentTargetRotation.y)
+        {
+            return;
+        }
+
+        float smoothedYAngle = Mathf.SmoothDampAngle(currentYAngle, currentTargetRotation.y, ref dampedTargetRotationCurrentVelocity.y, 0.14f - dampedTargetRotationPassedTime.y);
+        dampedTargetRotationPassedTime.y += Time.deltaTime;
+
+        Quaternion targetRotation = Quaternion.Euler(0f, smoothedYAngle, 0f);
+        rb.MoveRotation(targetRotation);
+    }
+
+    private float Rotate(Vector3 direction)
+    {
+        float directionAngle = UpdateTargetRotation(direction);
+        RotateTowardsTargetRotation();
+
+        return directionAngle;
+    }
+
+    private Vector3 GetTargetRotationDirection(float targetAngle)
+    {
+        return Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
     }
 }
