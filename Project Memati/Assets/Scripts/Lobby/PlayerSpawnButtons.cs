@@ -1,42 +1,36 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerSpawnButtons : MonoBehaviour
 {
     public GameObject[] playerControls; // Boru altýndaki buton gruplarý
-
-
-    private int currentPlayerIndex = 0;
+    private int currentActiveIndex = 0; // Þu anda aktif olan butonun indeksi
 
     void Start()
     {
-        // Baþlangýçta sadece ilk oyuncunun butonlarýný aktif yap
-        /*for (int i = 0; i < playerControls.Length; i++)
+        // Baþlangýçta tüm butonlarý devre dýþý býrakýyoruz
+        foreach (GameObject control in playerControls)
         {
-            playerControls[i].SetActive(i == 0);
-        }*/
-
-
-
-    }
-
-    void AddPlayer()
-    {
-        // Sonraki oyuncunun butonlarýný aktif yap
-        if (currentPlayerIndex < playerControls.Length - 1)
-        {
-            currentPlayerIndex++;
-            playerControls[currentPlayerIndex].SetActive(true);
+            control.SetActive(false);
         }
     }
 
-    void RemovePlayer()
+    void Update()
     {
-        // Mevcut oyuncunun butonlarýný gizle
-        if (currentPlayerIndex > 0)
+        // Enter tuþuna basýldýðýnda sýradaki butonu aktif hale getir
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
         {
-            playerControls[currentPlayerIndex].SetActive(false);
-            currentPlayerIndex--;
+            ActivateNextButtonGroup();
+        }
+    }
+
+    void ActivateNextButtonGroup()
+    {
+        // Sonraki buton grubunu aktif hale getir
+        if (currentActiveIndex < playerControls.Length)
+        {
+            playerControls[currentActiveIndex].SetActive(true);
+            currentActiveIndex++;
         }
     }
 }

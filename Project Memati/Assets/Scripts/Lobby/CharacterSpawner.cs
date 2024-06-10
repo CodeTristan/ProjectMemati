@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class CharacterSpawner : MonoBehaviour
 {
@@ -23,28 +24,13 @@ public class CharacterSpawner : MonoBehaviour
 
     [Header("MinigameMenu")]
     [SerializeField] private TextMeshProUGUI MinigameTexts;
+
     void Start()
     {
         instance = this;
         currentCharacters = new GameObject[dropPoints.Length];
         currentCharacterIndexes = new int[dropPoints.Length];
         isChangingCharacter = new bool[dropPoints.Length]; // Her boru için bayrak baþlat
-
-        //// Baþlangýçta sadece ilk karakteri ekle
-        //for (int i = 0; i < currentCharacters.Length; i++)
-        //{
-        //    if (i == 0)
-        //    {
-        //        currentCharacterIndexes[i] = 0;
-        //        SpawnCharacterAt(i, currentCharacterIndexes[i]);
-        //    }
-        //    else
-        //    {
-        //        currentCharacters[i] = null;
-        //        currentCharacterIndexes[i] = -1; // Baþlangýçta indeksler geçersiz
-        //    }
-        //}
-
 
         // Karakter deðiþtirme butonlarý için olaylarý baðla
         for (int i = 0; i < nextButtons.Length; i++)
@@ -68,7 +54,6 @@ public class CharacterSpawner : MonoBehaviour
         for (int i = 0; i < players.Count; i++)
         {
             players[i].CharacterPrefab = characters[currentCharacterIndexes[i]];
-
         }
     }
 
@@ -81,6 +66,7 @@ public class CharacterSpawner : MonoBehaviour
             MinigameTexts.text += "1- " + item + "\n";
         }
     }
+
     // Yeni bir oyuncu ekle
     void AddPlayer()
     {
@@ -172,5 +158,22 @@ public class CharacterSpawner : MonoBehaviour
     {
         // Düþme iþlemi devam ediyorsa "Start" butonuna basýlmasýný engelle
         startButton.interactable = !isDropping;
+
+        // Enter tuþuna basýldýðýnda sýradaki karakteri spawnla ve düþür
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            SpawnNextCharacter();
+        }
+    }
+
+    // Enter tuþuna basýldýðýnda karakterlerin spawn edilmesini ve düþmesini saðlar
+    void SpawnNextCharacter()
+    {
+        if (currentIndex < currentCharacters.Length)
+        {
+            currentCharacterIndexes[currentIndex] = 0; // Ýlk karakterle baþla
+            SpawnCharacterAt(currentIndex, currentCharacterIndexes[currentIndex]);
+            currentIndex++;
+        }
     }
 }
