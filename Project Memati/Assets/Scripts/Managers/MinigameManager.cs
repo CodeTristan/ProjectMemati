@@ -8,14 +8,14 @@ public class MinigameManager : MonoBehaviour
     public static MinigameManager instance;
 
     public int MaxMinigameCount;
-    public MinigameBase[] minigames;
+    public string[] minigames;
 
-    private List<MinigameBase> selectedMinigames;
+    public List<string> selectedMinigames;
     
     public void Init()
     {
         instance = this;
-        selectedMinigames = new List<MinigameBase>();
+        selectedMinigames = new List<string>();
        
     }
 
@@ -23,8 +23,9 @@ public class MinigameManager : MonoBehaviour
     //Rastgele þekilde MaxCount kadar minigameleri seçer ve selectedMinigames listesine ekler. Tüm minigamelerden 1 tane olunca tekrar listeyi doldurur.
     public void SelectMinigames()
     {
+        selectedMinigames.Clear();
         //Ui ile implemente edilecek.
-        List<MinigameBase> minigameBases = minigames.ToList();
+        List<string> minigameBases = minigames.ToList();
         for (int i = 0; i < MaxMinigameCount; i++)
         {
             int random = Random.Range(0, minigameBases.Count);

@@ -45,9 +45,6 @@ public class MinigameCountScrollbar : MonoBehaviour
                 scrollbar.value = 1f;
             }
 
-            minigameCountText.text = minigameCount.ToString();
-            minigameScreenText.text = "Minigame Sayýsý\n" + minigameCountText.text;
-
         }
     }
 

@@ -9,6 +9,7 @@ using static PlayerControl;
 public class Player
 {
     public PlayerControl playerControl;
+    public InputDevice device;
     public GameObject CharacterPrefab;
 }
 
@@ -25,24 +26,22 @@ public class PlayerManager : MonoBehaviour
     private int keyboardPlayerCount = 0;
 
     [SerializeField] private List<ControlDevice> controlDevices;
-    [SerializeField] private List<PlayerControl> players;
+    public List<Player> players;
 
     public void Init()
     {
         instance = this;
         controlDevices = new List<ControlDevice>();
-        players = new List<PlayerControl>();
+        players = new List<Player>();
         mainMenuActions = new MainMenuActions();
-        EnableMainMenuActions();
     }
 
-    //Change it to another manager later on
-    public void _StartGame()
+    public void SpawnPlayers(Vector3[] spawnPoints)
     {
-        PlayerControl[] players = FindObjectsOfType<PlayerControl>();
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < players.Count; i++)
         {
-            players[i].Init(controlDevices[i]);
+            Instantiate(players[i].CharacterPrefab, spawnPoints[i], Quaternion.identity);
+            players[i].playerControl.Init(controlDevices[i]);
         }
     }
 
@@ -81,11 +80,13 @@ public class PlayerManager : MonoBehaviour
             return;
 
         controlDevices.Add(controlDevice);
-        PlayerControl player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
+        Player player = new Player();
         player.device = context.control.device;
         players.Add(player);
-        player.Init(controlDevice);
+        //player.playerControl.Init(controlDevice);
         spawnPos += new Vector3(3, 0, 0);
+
+        CharacterSpawner.instance.SpawnCharacterAt(players.Count - 1, 0);
     }
 
     //Gamepad için oyuncu yaratýr.
@@ -102,10 +103,12 @@ public class PlayerManager : MonoBehaviour
         if (players.Count >= 4)
             return;
         spawnPos += new Vector3(3, 0, 0);
-        PlayerControl player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
+        Player player = new Player();
         player.device = context.control.device;
         players.Add(player);
-        player.Init(ControlDevice.Gamepad);
+        //player.playerControl.Init(ControlDevice.Gamepad);
         controlDevices.Add(ControlDevice.Gamepad);
+
+        CharacterSpawner.instance.SpawnCharacterAt(players.Count - 1, 0);
     }
 }

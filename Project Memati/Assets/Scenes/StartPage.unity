@@ -3926,6 +3926,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
+      propertyPath: minigames.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
+      propertyPath: minigames.Array.data[0]
+      value: Obezman
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
+      propertyPath: minigames.Array.data[1]
+      value: Cliff Run
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
+      propertyPath: minigames.Array.data[2]
+      value: Vodoo Master
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
+      propertyPath: minigames.Array.data[3]
+      value: ???
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
+      propertyPath: selectedMinigames.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3058566580483698578, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.139755

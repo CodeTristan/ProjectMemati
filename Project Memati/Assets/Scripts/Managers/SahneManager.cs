@@ -18,7 +18,9 @@ public class SahneManager : MonoBehaviour
     //Sahne yüklendiði an bu fonksiyon otomatik olarak çaðýrýlýr. Sahne yüklenince bir þeyler yapýlmasýný istiyorsanýz bunun içine yazýn.
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        
+        PlayerManager.instance.DisableMainMenuActions();
+        if(arg0.name == "LobbyMenu")
+            PlayerManager.instance.EnableMainMenuActions();
     }
 
     //Ýsmi verilen sahneyi yükler

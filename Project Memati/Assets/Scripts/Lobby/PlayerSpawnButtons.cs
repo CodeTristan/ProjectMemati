@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public class PlayerSpawnButtons : MonoBehaviour
 {
     public GameObject[] playerControls; // Boru altýndaki buton gruplarý
-    public Button addButton; // ADD PLAYER butonu
-    public Button removeButton; // REMOVE PLAYER butonu
+
 
     private int currentPlayerIndex = 0;
 
@@ -17,10 +16,7 @@ public class PlayerSpawnButtons : MonoBehaviour
             playerControls[i].SetActive(i == 0);
         }
 
-        // ADD PLAYER butonuna týklama olayýný baðla
-        addButton.onClick.AddListener(AddPlayer);
-        // REMOVE PLAYER butonuna týklama olayýný baðla
-        removeButton.onClick.AddListener(RemovePlayer);
+
     }
 
     void AddPlayer()

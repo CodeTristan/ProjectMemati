@@ -1,14 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class CharacterSpawner : MonoBehaviour
 {
+    public static CharacterSpawner instance;
+
     public GameObject[] characters; // Prefab karakterler
     public Transform[] spawnPoints; // Karakterlerin spawn olacaðý noktalar (borularýn üstü)
     public Transform[] dropPoints;  // Karakterlerin düþeceði noktalar (borularýn içi)
-    public Button addButton;        // Oyuncu Ekle butonu
-    public Button removeButton;     // Oyuncu Çýkar butonu
+
     public Button[] nextButtons;    // Sonraki karakter butonlarý
     public Button[] previousButtons; // Önceki karakter butonlarý
     public Button startButton;      // Start butonu
@@ -19,30 +21,30 @@ public class CharacterSpawner : MonoBehaviour
     private bool isDropping = false;    // Düþme iþlemi durumu
     private int currentIndex = 0; // Þu anki karakterin indeksi
 
+    [Header("MinigameMenu")]
+    [SerializeField] private TextMeshProUGUI MinigameTexts;
     void Start()
     {
+        instance = this;
         currentCharacters = new GameObject[dropPoints.Length];
         currentCharacterIndexes = new int[dropPoints.Length];
         isChangingCharacter = new bool[dropPoints.Length]; // Her boru için bayrak baþlat
 
-        // Baþlangýçta sadece ilk karakteri ekle
-        for (int i = 0; i < currentCharacters.Length; i++)
-        {
-            if (i == 0)
-            {
-                currentCharacterIndexes[i] = 0;
-                SpawnCharacterAt(i, currentCharacterIndexes[i]);
-            }
-            else
-            {
-                currentCharacters[i] = null;
-                currentCharacterIndexes[i] = -1; // Baþlangýçta indeksler geçersiz
-            }
-        }
+        //// Baþlangýçta sadece ilk karakteri ekle
+        //for (int i = 0; i < currentCharacters.Length; i++)
+        //{
+        //    if (i == 0)
+        //    {
+        //        currentCharacterIndexes[i] = 0;
+        //        SpawnCharacterAt(i, currentCharacterIndexes[i]);
+        //    }
+        //    else
+        //    {
+        //        currentCharacters[i] = null;
+        //        currentCharacterIndexes[i] = -1; // Baþlangýçta indeksler geçersiz
+        //    }
+        //}
 
-        // Buton olaylarýný baðla
-        addButton.onClick.AddListener(AddPlayer);
-        removeButton.onClick.AddListener(RemovePlayer);
 
         // Karakter deðiþtirme butonlarý için olaylarý baðla
         for (int i = 0; i < nextButtons.Length; i++)
@@ -54,8 +56,31 @@ public class CharacterSpawner : MonoBehaviour
 
         // Baþlangýçta start butonunu etkinleþtir
         startButton.interactable = true;
+
+        //Minigameleri seç
+        MinigameManager.instance.SelectMinigames();
     }
 
+    //_ demek buton tarafýndan kullanýlacak demek
+    public void _StartGame()
+    {
+        List<Player> players = PlayerManager.instance.players;
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].CharacterPrefab = characters[currentCharacterIndexes[i]];
+
+        }
+    }
+
+    public void _SelectMinigames()
+    {
+        MinigameManager.instance.SelectMinigames();
+        MinigameTexts.text = "";
+        foreach (var item in MinigameManager.instance.selectedMinigames)
+        {
+            MinigameTexts.text += "1- " + item + "\n";
+        }
+    }
     // Yeni bir oyuncu ekle
     void AddPlayer()
     {
@@ -112,11 +137,10 @@ public class CharacterSpawner : MonoBehaviour
     }
 
     // Belirli bir indekste karakteri spawnla ve yerine düþür
-    void SpawnCharacterAt(int index, int characterIndex)
+    public void SpawnCharacterAt(int index, int characterIndex)
     {
         currentCharacters[index] = Instantiate(characters[characterIndex], spawnPoints[index].position, Quaternion.identity);
         currentCharacters[index].transform.Rotate(0, 180, 0);
-        currentCharacters[index].gameObject.AddComponent<CapsuleCollider>();
         StartCoroutine(DropCharacter(currentCharacters[index], dropPoints[index].position));
     }
 

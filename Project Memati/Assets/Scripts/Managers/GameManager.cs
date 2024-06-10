@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
         minigameManager.Init();
         playerManager.Init();
         sahneManager.Init();
+
+        DontDestroyOnLoad(gameObject);
     }
 
 

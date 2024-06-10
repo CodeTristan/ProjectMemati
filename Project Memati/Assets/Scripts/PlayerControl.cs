@@ -36,6 +36,7 @@ public class PlayerControl : MonoBehaviour
     public void Init(ControlDevice controlDevice)
     {
         inputActions = new PlayerActions();
+        MainCameraTransform = Camera.main.transform;
 
         if (controlDevice == ControlDevice.KeyboardLeft)
         {
