@@ -1,6 +1,6 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharacterSpawner : MonoBehaviour
 {
@@ -11,10 +11,12 @@ public class CharacterSpawner : MonoBehaviour
     public Button removeButton;     // Oyuncu Çýkar butonu
     public Button[] nextButtons;    // Sonraki karakter butonlarý
     public Button[] previousButtons; // Önceki karakter butonlarý
+    public Button startButton;      // Start butonu
 
     private GameObject[] currentCharacters; // Mevcut karakterler
     private int[] currentCharacterIndices;  // Mevcut karakter indeksleri
     private bool[] isChangingCharacter; // Her boru için karakter deðiþimi durumu
+    private bool isDropping = false;    // Düþme iþlemi durumu
     private int currentIndex = 0; // Þu anki karakterin indeksi
 
     void Start()
@@ -49,6 +51,9 @@ public class CharacterSpawner : MonoBehaviour
             nextButtons[i].onClick.AddListener(() => ChangeCharacter(index, 1));
             previousButtons[i].onClick.AddListener(() => ChangeCharacter(index, -1));
         }
+
+        // Baþlangýçta start butonunu etkinleþtir
+        startButton.interactable = true;
     }
 
     // Yeni bir oyuncu ekle
@@ -117,6 +122,9 @@ public class CharacterSpawner : MonoBehaviour
     // Karakteri belirli bir pozisyona düþür
     System.Collections.IEnumerator DropCharacter(GameObject character, Vector3 targetPosition)
     {
+        isDropping = true; // Düþme iþlemi baþladý
+        startButton.interactable = false; // Start butonunu devre dýþý býrak
+
         float duration = 1.0f; // Düþüþ süresi
         float elapsedTime = 0;
 
@@ -130,5 +138,14 @@ public class CharacterSpawner : MonoBehaviour
         }
 
         character.transform.position = targetPosition;
+
+        isDropping = false; // Düþme iþlemi tamamlandý
+        startButton.interactable = true; // Start butonunu tekrar etkinleþtir
+    }
+
+    void Update()
+    {
+        // Düþme iþlemi devam ediyorsa "Start" butonuna basýlmasýný engelle
+        startButton.interactable = !isDropping;
     }
 }
