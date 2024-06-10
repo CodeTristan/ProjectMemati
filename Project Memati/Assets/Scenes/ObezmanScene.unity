@@ -3727,6 +3727,10 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5065076864093195167, guid: 1b0e48e7c34338a468287c70384f9a52, type: 3}
+      propertyPath: MainCameraTransform
+      value: 
+      objectReference: {fileID: 846602706}
     - target: {fileID: 6514263654244292565, guid: 1b0e48e7c34338a468287c70384f9a52, type: 3}
       propertyPath: m_Name
       value: Player
