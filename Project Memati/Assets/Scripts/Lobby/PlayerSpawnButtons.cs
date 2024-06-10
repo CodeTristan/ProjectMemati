@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterManager : MonoBehaviour
+public class PlayerSpawnButtons : MonoBehaviour
 {
     public GameObject[] playerControls; // Boru altýndaki buton gruplarý
     public Button addButton; // ADD PLAYER butonu
