@@ -10,14 +10,7 @@ public class ObezmanBurger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Player player = other.GetComponent<Player>(); 
-
-            if (player != null) // Oyuncu bileşenini başarıyla aldıysanız
-            {
-                ScoreManager.instance.AddScore(player, amkskoru); // Skoru ekleyin
-            }
-
-            Destroy(gameObject); // Hamburger objesini yok edin
+            Destroy(gameObject);
         }
     }
 }

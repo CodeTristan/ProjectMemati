@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour
         else if (keyboardPlayerCount == 2)
             controlDevice = ControlDevice.KeyboardRight;
         else
-            return;
+            controlDevice = ControlDevice.KeyboardLeft;
 
         controlDevices.Add(controlDevice);
         Player player = new Player();

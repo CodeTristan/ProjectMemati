@@ -8,6 +8,7 @@ TagManager:
   - LobbyPipe
   - TempleRunBoundary
   - TempleRunObstacle
+  - burger
   layers:
   - Default
   - TransparentFX

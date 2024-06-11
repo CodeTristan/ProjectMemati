@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 3542816027821946635}
   - component: {fileID: -4944265360295727923}
   - component: {fileID: -8457126332364964930}
-  - component: {fileID: 9123810905797457774}
   m_Layer: 0
   m_Name: Burger
-  m_TagString: Untagged
+  m_TagString: burger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,17 +131,3 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &9123810905797457774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2602641606077459650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928791efc7a5481459a0fd54eed15ebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amkskoru: 10
-  eatBurger: {fileID: -9085381068263898226, guid: b57bbacec8c8feb4486ce9ca5fa0f3bf, type: 3}
