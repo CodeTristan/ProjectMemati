@@ -14,6 +14,9 @@ public class ObezmanMinigame : MinigameBase
     public GameObject[] mazePrefabs;
     public Transform[] spawnPoints;
 
+    public Transform[] playerSpawnPoints;
+    private List<GameObject> spawnedPlayers = new List<GameObject>();
+
     public int iks = 5;
     public int ye = 5;
     public float bosluk = 2.0f;
@@ -30,6 +33,7 @@ public class ObezmanMinigame : MinigameBase
         SpawnBurgers();
         SpawnInitialMaze();
         StartCoroutine(SwitchMazes());
+        SpawnPlayers();
 
     }
 
@@ -47,6 +51,19 @@ public class ObezmanMinigame : MinigameBase
             }
         }
     }
+
+    void SpawnPlayers()
+    {
+        List<Player> players = PlayerManager.instance.players;
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            GameObject playerCharacter = Instantiate(players[i].CharacterPrefab, playerSpawnPoints[i].position, Quaternion.identity);
+            playerCharacter.transform.Rotate(0, 180, 0);
+            spawnedPlayers.Add(playerCharacter);
+        }
+    }
+
 
     void SpawnInitialMaze()
     {
