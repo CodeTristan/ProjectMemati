@@ -6,10 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerMove : PlayerControl
 {
     public float forwardSpeed;
-
+    public bool startMove;
     private void FixedUpdate() 
     {
-        rb.velocity = new Vector3(moveInput.x * speed, rb.velocity.y + jumpInput, forwardSpeed);
+        if (startMove)
+            rb.velocity = new Vector3(moveInput.x * speed, rb.velocity.y + jumpInput, forwardSpeed);
     }
     //Collision olursa bu kod içerisinde kontrol edilmesi lazým. Collision'a giriþte burasý çalýþýr.
     protected void OnCollisionEnter(Collision collision)
