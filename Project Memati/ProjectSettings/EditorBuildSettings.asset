@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LobbyMenu.unity
     guid: fa0f485331beda74f93cedf5f57a7ca0
+  - enabled: 1
+    path: Assets/Scenes/ObezmanScene.unity
+    guid: 6dfdfcf8296fa184ca721bb137fec2ab
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 35764fea18bbdd1478e159aa9727c689, type: 2}
