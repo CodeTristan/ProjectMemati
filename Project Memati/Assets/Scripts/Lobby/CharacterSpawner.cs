@@ -55,6 +55,8 @@ public class CharacterSpawner : MonoBehaviour
         {
             players[i].CharacterPrefab = characters[currentCharacterIndexes[i]];
         }
+
+        SahneManager.instance.LoadScene("ObezmanScene");
     }
 
     public void _SelectMinigames()
@@ -158,12 +160,6 @@ public class CharacterSpawner : MonoBehaviour
     {
         // Düþme iþlemi devam ediyorsa "Start" butonuna basýlmasýný engelle
         startButton.interactable = !isDropping;
-
-        // Enter tuþuna basýldýðýnda sýradaki karakteri spawnla ve düþür
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            SpawnNextCharacter();
-        }
     }
 
     // Enter tuþuna basýldýðýnda karakterlerin spawn edilmesini ve düþmesini saðlar

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] MinigameManager minigameManager;
     [SerializeField] PlayerManager playerManager;
     [SerializeField] SahneManager sahneManager;
+    [SerializeField] PlayerScoreManager playerScoreManager;
 
     //Oyundaki tek start fonksiyonu buradadýr. Diðer managerlarda Init fonksiyonu bulunur ve burada istenilen sýraya göre çaðýrýlýr.
     private void Start()
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
         minigameManager.Init();
         playerManager.Init();
         sahneManager.Init();
+        playerScoreManager.Init();
 
         DontDestroyOnLoad(gameObject);
     }

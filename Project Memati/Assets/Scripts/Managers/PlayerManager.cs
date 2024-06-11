@@ -11,6 +11,7 @@ public class Player
     public PlayerControl playerControl;
     public InputDevice device;
     public GameObject CharacterPrefab;
+    public int score;
 }
 
 public class PlayerManager : MonoBehaviour
@@ -87,6 +88,7 @@ public class PlayerManager : MonoBehaviour
         spawnPos += new Vector3(3, 0, 0);
 
         CharacterSpawner.instance.SpawnCharacterAt(players.Count - 1, 0);
+        PlayerSpawnButtons.instance.ActivateNextButtonGroup();
     }
 
     //Gamepad için oyuncu yaratýr.
@@ -110,5 +112,6 @@ public class PlayerManager : MonoBehaviour
         controlDevices.Add(ControlDevice.Gamepad);
 
         CharacterSpawner.instance.SpawnCharacterAt(players.Count - 1, 0);
+        PlayerSpawnButtons.instance.ActivateNextButtonGroup();
     }
 }
