@@ -88,6 +88,7 @@ public class ObezmanMinigame : MinigameBase
         int anan = spawnedPlayers.IndexOf(winner);
 
         players[anan].score += 20;
+        SahneManager.instance.LoadScene("MinigameBreak");
     }
 
     void DisplayTime(float timeToDisplay)
