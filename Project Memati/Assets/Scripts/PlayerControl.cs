@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerControl : MonoBehaviour
 {
     public Rigidbody rb;
-
+    public Player player;
     public float speed;
     public float jumpPower;
     public bool isGrounded;

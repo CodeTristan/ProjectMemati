@@ -91,6 +91,8 @@ public class PlayerManager : MonoBehaviour
         spawnPos += new Vector3(3, 0, 0);
 
         CharacterSpawner.instance.SpawnCharacterAt(players.Count - 1, 0);
+        player.playerControl = player.CharacterPrefab.GetComponent<PlayerControl>();
+        player.playerControl.player = player;
         PlayerSpawnButtons.instance.ActivateNextButtonGroup();
     }
 
@@ -116,6 +118,8 @@ public class PlayerManager : MonoBehaviour
         controlDevices.Add(ControlDevice.Gamepad);
 
         CharacterSpawner.instance.SpawnCharacterAt(players.Count - 1, 0);
+        player.playerControl = player.CharacterPrefab.GetComponent<PlayerControl>();
+        player.playerControl.player = player;
         PlayerSpawnButtons.instance.ActivateNextButtonGroup();
     }
 }
