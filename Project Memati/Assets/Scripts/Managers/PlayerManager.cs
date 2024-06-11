@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControl;
@@ -19,7 +20,6 @@ public class Player
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-
 
     private MainMenuActions mainMenuActions;
     [SerializeField] private PlayerControl playerPrefab;
