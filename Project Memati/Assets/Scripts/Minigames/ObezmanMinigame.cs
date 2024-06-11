@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ObezmanMinigame : MinigameBase
 {
@@ -16,7 +18,7 @@ public class ObezmanMinigame : MinigameBase
 
     public Transform[] playerSpawnPoints;
     [SerializeField] private PlayerControl PlayerControlPrefab;
-    private List<GameObject> spawnedPlayers = new List<GameObject>();
+    private List<ObezmanControl> spawnedPlayers = new List<ObezmanControl>();
 
     public int iks = 5;
     public int ye = 5;
@@ -25,6 +27,11 @@ public class ObezmanMinigame : MinigameBase
     private List<GameObject> spawnedMazes = new List<GameObject>();
     private float switchTime = 5.0f;
     private float moveDuration = 1.0f;
+
+    public List<Camera> playerCameras;
+
+    public TextMeshProUGUI[] scoreTexts;
+
     public override void Init()
     {
 
@@ -36,6 +43,7 @@ public class ObezmanMinigame : MinigameBase
         SpawnInitialMaze();
         StartCoroutine(SwitchMazes());
         SpawnPlayers();
+        AdjustCameraViewports();
     }
 
     void SpawnBurgers()
@@ -60,16 +68,63 @@ public class ObezmanMinigame : MinigameBase
         for (int i = 0; i < players.Count; i++)
         {
             GameObject playerCharacter = Instantiate(players[i].CharacterPrefab, playerSpawnPoints[i].position, Quaternion.identity);
+            ObezmanControl obezmanControl = playerCharacter.AddComponent<ObezmanControl>();
+            obezmanControl.scoreText = scoreTexts[i];
+            playerCharacter.name = "player" + string.Format("{0}", i);
             playerCharacter.transform.Rotate(0, 180, 0);
             PlayerControl playerControl = playerCharacter.GetComponent<PlayerControl>();
 
             //Burada tüm playercontrol özelliklerini prefabdakilerden aktarıyoruz
-            playerControl.speed = PlayerControlPrefab.speed;
-            playerControl.jumpPower = PlayerControlPrefab.jumpPower;
-            playerControl.Init(players[i].ControlDevice, players[i].device);
+            obezmanControl.speed = PlayerControlPrefab.speed;
+            obezmanControl.jumpPower = PlayerControlPrefab.jumpPower;
+            obezmanControl.Init(players[i].ControlDevice, players[i].device);
 
+            obezmanControl.playerCamera= playerCameras[i];
 
-            spawnedPlayers.Add(playerCharacter);
+            playerControl.enabled = false;
+            spawnedPlayers.Add(obezmanControl);
+
+            FollowPlayer followPlayerScript = playerCameras[i].GetComponent<FollowPlayer>();
+            if (followPlayerScript != null)
+            {
+                followPlayerScript.playerTransform = playerCharacter.transform;
+                playerCameras[i].transform.position = playerCharacter.transform.position + followPlayerScript.offset;
+                playerCameras[i].transform.LookAt(playerCharacter.transform);
+            }
+        }
+    }
+
+    void AdjustCameraViewports()
+    {
+        int playercount = spawnedPlayers.Count;
+        for (int i = 0; i< playercount; i++)
+        {
+            if(playercount==1)
+            {
+                playerCameras[i].rect = new Rect(0, 0, 1, 1);
+            }
+
+            else if(playercount==2)
+            {
+                playerCameras[i].rect = new Rect(0, 0.5f*i, 1, 0.5f);
+            }
+
+            else if (playercount == 3)
+            {
+                if (i == 0)
+                {
+                    playerCameras[i].rect = new Rect(0, 0.5f, 1, 0.5f);
+                }
+                else
+                {
+                    playerCameras[i].rect = new Rect(0.5f * (i - 1), 0, 0.5f, 0.5f);
+                }
+            }
+
+            else if (playercount == 4)
+            {
+                playerCameras[i].rect = new Rect(0.5f * (i % 2), 0.5f * (i / 2), 0.5f, 0.5f);
+            }
         }
     }
 

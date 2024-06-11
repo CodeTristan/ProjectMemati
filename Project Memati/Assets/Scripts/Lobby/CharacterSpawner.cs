@@ -56,7 +56,7 @@ public class CharacterSpawner : MonoBehaviour
             players[i].CharacterPrefab = characters[currentCharacterIndexes[i]];
         }
 
-        SahneManager.instance.LoadScene("TempleRun");
+        SahneManager.instance.LoadScene("ObezManScene");
     }
 
     public void _SelectMinigames()
