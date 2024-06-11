@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2717232428287872754}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6850044399685997191}
   m_Layer: 0
   m_Name: SM_Env_RockPile_01
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 7969701907276407023}
   m_Layer: 0
   m_Name: RockPile
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

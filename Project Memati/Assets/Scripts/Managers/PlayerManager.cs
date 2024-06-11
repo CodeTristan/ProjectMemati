@@ -8,6 +8,7 @@ using static PlayerControl;
 [System.Serializable]
 public class Player
 {
+    public int playerID;
     public PlayerControl playerControl;
     public ControlDevice ControlDevice;
     public InputDevice device;

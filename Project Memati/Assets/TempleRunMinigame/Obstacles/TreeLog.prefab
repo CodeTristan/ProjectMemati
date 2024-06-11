@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3520741388597927498}
   m_Layer: 0
   m_Name: TreeLog
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6067316657540570826}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 56760348759552271}
   m_Layer: 0
   m_Name: SM_Env_TreeLog_01
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
