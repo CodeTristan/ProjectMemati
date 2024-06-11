@@ -2136,6 +2136,9 @@ GameObject:
   m_Component:
   - component: {fileID: 408822}
   - component: {fileID: 9551078}
+  - component: {fileID: -857315126888947687}
+  - component: {fileID: 6431856518673394505}
+  - component: {fileID: 2937220327101059379}
   m_Layer: 0
   m_Name: Character_Peasant_White
   m_TagString: Untagged
@@ -2185,6 +2188,75 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-857315126888947687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e232ec78906e4241af1f36a567c4b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 6431856518673394505}
+  speed: 0
+  jumpPower: 0
+  isGrounded: 0
+  MainCameraTransform: {fileID: 0}
+  dampedTargetRotationPassedTime: {x: 0, y: 0, z: 0}
+  dampedTargetRotationCurrentVelocity: {x: 0, y: 0, z: 0}
+  dampedTargetRotationPassedPassedTime: {x: 0, y: 0, z: 0}
+  timeToReachTargetRotation: {x: 0, y: 0, z: 0}
+--- !u!54 &6431856518673394505
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171706}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &2937220327101059379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171706}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.876583, y: 1.8196449, z: 1}
+  m_Center: {x: 0.000639379, y: 0.9230361, z: 0}
 --- !u!1 &174482
 GameObject:
   m_ObjectHideFlags: 0

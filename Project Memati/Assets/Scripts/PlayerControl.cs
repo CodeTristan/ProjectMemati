@@ -7,7 +7,6 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
 
-    public int playerId;
     public float speed;
     public float jumpPower;
     public bool isGrounded;
@@ -33,11 +32,11 @@ public class PlayerControl : MonoBehaviour
     }
 
     //Control device türüne göre kontrolleri açar.
-    public void Init(ControlDevice controlDevice)
+    public void Init(ControlDevice controlDevice,InputDevice device)
     {
         inputActions = new PlayerActions();
         MainCameraTransform = Camera.main.transform;
-
+        this.device = device;
         if (controlDevice == ControlDevice.KeyboardLeft)
         {
             inputActions.KeyboardLeft.Enable();

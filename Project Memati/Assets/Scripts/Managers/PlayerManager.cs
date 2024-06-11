@@ -9,6 +9,7 @@ using static PlayerControl;
 public class Player
 {
     public PlayerControl playerControl;
+    public ControlDevice ControlDevice;
     public InputDevice device;
     public GameObject CharacterPrefab;
     public int score;
@@ -42,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < players.Count; i++)
         {
             Instantiate(players[i].CharacterPrefab, spawnPoints[i], Quaternion.identity);
-            players[i].playerControl.Init(controlDevices[i]);
+            players[i].playerControl.Init(controlDevices[i], players[i].device);
         }
     }
 
@@ -84,6 +85,7 @@ public class PlayerManager : MonoBehaviour
         Player player = new Player();
         player.device = context.control.device;
         players.Add(player);
+        player.ControlDevice = controlDevice;
         //player.playerControl.Init(controlDevice);
         spawnPos += new Vector3(3, 0, 0);
 
@@ -107,6 +109,7 @@ public class PlayerManager : MonoBehaviour
         spawnPos += new Vector3(3, 0, 0);
         Player player = new Player();
         player.device = context.control.device;
+        player.ControlDevice = ControlDevice.Gamepad;
         players.Add(player);
         //player.playerControl.Init(ControlDevice.Gamepad);
         controlDevices.Add(ControlDevice.Gamepad);

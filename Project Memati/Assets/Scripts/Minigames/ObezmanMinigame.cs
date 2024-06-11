@@ -15,6 +15,7 @@ public class ObezmanMinigame : MinigameBase
     public Transform[] spawnPoints;
 
     public Transform[] playerSpawnPoints;
+    [SerializeField] private PlayerControl PlayerControlPrefab;
     private List<GameObject> spawnedPlayers = new List<GameObject>();
 
     public int iks = 5;
@@ -26,6 +27,7 @@ public class ObezmanMinigame : MinigameBase
     private float moveDuration = 1.0f;
     public override void Init()
     {
+
     }
 
     private void Start()
@@ -34,7 +36,6 @@ public class ObezmanMinigame : MinigameBase
         SpawnInitialMaze();
         StartCoroutine(SwitchMazes());
         SpawnPlayers();
-
     }
 
     void SpawnBurgers()
@@ -60,6 +61,14 @@ public class ObezmanMinigame : MinigameBase
         {
             GameObject playerCharacter = Instantiate(players[i].CharacterPrefab, playerSpawnPoints[i].position, Quaternion.identity);
             playerCharacter.transform.Rotate(0, 180, 0);
+            PlayerControl playerControl = playerCharacter.GetComponent<PlayerControl>();
+
+            //Burada tüm playercontrol özelliklerini prefabdakilerden aktarıyoruz
+            playerControl.speed = PlayerControlPrefab.speed;
+            playerControl.jumpPower = PlayerControlPrefab.jumpPower;
+            playerControl.Init(players[i].ControlDevice, players[i].device);
+
+
             spawnedPlayers.Add(playerCharacter);
         }
     }
