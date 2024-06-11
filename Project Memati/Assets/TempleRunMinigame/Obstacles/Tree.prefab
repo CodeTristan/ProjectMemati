@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 657141877403099378}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 6484618839717176280}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 7213974469728013471}
   m_Layer: 0
   m_Name: SM_Env_Tree_01
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 4030473822977704302}
   m_Layer: 0
   m_Name: Sphere (2)
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 5507332596549513167}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 1450915465493980700}
   m_Layer: 0
   m_Name: Tree
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

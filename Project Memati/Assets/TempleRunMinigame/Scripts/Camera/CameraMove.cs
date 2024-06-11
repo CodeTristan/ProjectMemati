@@ -5,10 +5,17 @@ using UnityEngine.InputSystem;
 
 public class CameraMove : MonoBehaviour
 {
-    [SerializeField] public float cameraSpeed = 9;
+    public float cameraSpeed;
 
+    public void Init()
+    {
+        startMovement = true;
+    }
+
+    bool startMovement = false;
     void Update()
     {
-        transform.Translate(0, 0, cameraSpeed * Time.deltaTime);
+        if(startMovement)
+            transform.Translate(0, 0, cameraSpeed * Time.deltaTime);
     }
 }

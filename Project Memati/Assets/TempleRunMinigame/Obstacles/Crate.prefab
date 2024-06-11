@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2974147867769885914}
   m_Layer: 0
   m_Name: SM_Prop_Crate_01
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 213424180547575127}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 220547020616036039}
   m_Layer: 0
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: TempleRunObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

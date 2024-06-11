@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
+    public Rigidbody rb;
 
     public float speed;
     public float jumpPower;
@@ -19,10 +19,10 @@ public class PlayerControl : MonoBehaviour
     public Vector3 dampedTargetRotationPassedPassedTime;
     public Vector3 timeToReachTargetRotation;
 
-    private Vector2 moveInput;
-    private float jumpInput;
-    private PlayerActions inputActions;
-    private Vector3 currentTargetRotation;
+    protected Vector2 moveInput;
+    protected float jumpInput;
+    protected PlayerActions inputActions;
+    protected Vector3 currentTargetRotation;
 
     public enum ControlDevice
     {
@@ -34,6 +34,7 @@ public class PlayerControl : MonoBehaviour
     //Control device türüne göre kontrolleri açar.
     public void Init(ControlDevice controlDevice,InputDevice device)
     {
+        rb = GetComponent<Rigidbody>();
         inputActions = new PlayerActions();
         MainCameraTransform = Camera.main.transform;
         this.device = device;
@@ -63,7 +64,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     //Collision olursa bu kod içerisinde kontrol edilmesi lazým. Collision'a giriþte burasý çalýþýr.
-    private void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
@@ -73,7 +74,7 @@ public class PlayerControl : MonoBehaviour
 
 
     //Collision olursa bu kod içerisinde kontrol edilmesi lazým. Collision'dan çýkýþta burasý çalýþýr.
-    private void OnCollisionExit(Collision collision)
+    protected void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
@@ -83,7 +84,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     //Hýzý ayarlama.
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (moveInput == Vector2.zero || speed == 0f)
         {
@@ -122,7 +123,7 @@ public class PlayerControl : MonoBehaviour
         Debug.Log(msg);
     }
 
-    private float AddCameraRotationToAngle(float angle)
+    protected float AddCameraRotationToAngle(float angle)
     {
         angle += MainCameraTransform.eulerAngles.y;
         if (angle > 360)
@@ -133,13 +134,13 @@ public class PlayerControl : MonoBehaviour
         return angle;
     }
 
-    private void UpdateTargetRotationData(float targetAngle)
+    protected void UpdateTargetRotationData(float targetAngle)
     {
         currentTargetRotation.y = targetAngle;
         dampedTargetRotationPassedPassedTime.y = 0f;
     }
 
-    private float UpdateTargetRotation(Vector3 direction)
+    protected float UpdateTargetRotation(Vector3 direction)
     {
         float directionAngle = GetDirectionAngle(direction);
 
@@ -153,7 +154,7 @@ public class PlayerControl : MonoBehaviour
         return directionAngle;
     }
 
-    private static float GetDirectionAngle(Vector3 direction)
+    protected static float GetDirectionAngle(Vector3 direction)
     {
         float directionAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
@@ -165,7 +166,7 @@ public class PlayerControl : MonoBehaviour
         return directionAngle;
     }
 
-    private void RotateTowardsTargetRotation()
+    protected void RotateTowardsTargetRotation()
     {
         float currentYAngle = rb.rotation.eulerAngles.y;
 
@@ -181,7 +182,7 @@ public class PlayerControl : MonoBehaviour
         rb.MoveRotation(targetRotation);
     }
 
-    private float Rotate(Vector3 direction)
+    protected float Rotate(Vector3 direction)
     {
         float directionAngle = UpdateTargetRotation(direction);
         RotateTowardsTargetRotation();
@@ -189,7 +190,7 @@ public class PlayerControl : MonoBehaviour
         return directionAngle;
     }
 
-    private Vector3 GetTargetRotationDirection(float targetAngle)
+    protected Vector3 GetTargetRotationDirection(float targetAngle)
     {
         return Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
     }

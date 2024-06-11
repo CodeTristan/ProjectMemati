@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 4539244828216544595}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 6093659824244861626}
   m_Layer: 0
   m_Name: LeftBoundary
-  m_TagString: Untagged
+  m_TagString: TempleRunBoundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 7741130976244131688}
   m_Layer: 0
   m_Name: RightBoundary
-  m_TagString: Untagged
+  m_TagString: TempleRunBoundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2815,6 +2815,10 @@ PrefabInstance:
     - target: {fileID: 3828658112454387422, guid: df6bb0204dc77e34094a706b862d68f0, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6740000680606268038, guid: df6bb0204dc77e34094a706b862d68f0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7057878725231119139, guid: df6bb0204dc77e34094a706b862d68f0, type: 3}
       propertyPath: m_LocalScale.x

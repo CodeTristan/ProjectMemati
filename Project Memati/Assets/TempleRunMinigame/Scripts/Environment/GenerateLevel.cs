@@ -11,6 +11,20 @@ public class GenerateLevel : MonoBehaviour
     public int sectionNumber;
 
     public int count = 0;
+    public float StartForwardSpeed;  //baþlangýçtaki ileriye doðru olan hýz
+
+    [Header("Player")]
+    [SerializeField] private Transform[] playerSpawnPoints;
+    [SerializeField] private PlayerControl PlayerControlPrefab;
+
+    public List<GameObject> spawnedPlayers;
+
+    private void Start()
+    {
+        spawnedPlayers = new List<GameObject>();
+        SpawnPlayers();
+    }
+
     void Update()
     {
         if (!creatingSection & (count < 10)){ //generates 10 sections in total
@@ -18,6 +32,28 @@ public class GenerateLevel : MonoBehaviour
             StartCoroutine(GenerateSection());
         }
         
+    }
+
+    void SpawnPlayers()
+    {
+        List<Player> players = PlayerManager.instance.players;
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            GameObject playerCharacter = Instantiate(players[i].CharacterPrefab, playerSpawnPoints[i].position, Quaternion.identity);
+            //playerCharacter.transform.Rotate(0, 180, 0);
+            PlayerControl playerControl = playerCharacter.GetComponent<PlayerControl>();
+            PlayerMove playerMove = playerCharacter.AddComponent<PlayerMove>();
+
+            //Burada tüm playercontrol özelliklerini prefabdakilerden aktarýyoruz
+            playerMove.speed = PlayerControlPrefab.speed;
+            playerMove.jumpPower = PlayerControlPrefab.jumpPower;
+            playerMove.forwardSpeed = StartForwardSpeed;
+            playerMove.Init(players[i].ControlDevice, players[i].device);
+
+            playerControl.enabled = false;
+            spawnedPlayers.Add(playerCharacter);
+        }
     }
 
     IEnumerator GenerateSection(){
