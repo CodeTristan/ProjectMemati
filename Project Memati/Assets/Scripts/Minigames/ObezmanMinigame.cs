@@ -4,10 +4,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class ObezmanMinigame : MinigameBase
 {
     public GameObject burger;
+
+    public float timeRemaining = 10;
+    public TextMeshProUGUI timeText;
+    public bool timerIsRunning = false;
 
     public Vector3 firstPosition;
 
@@ -32,6 +37,8 @@ public class ObezmanMinigame : MinigameBase
 
     public TextMeshProUGUI[] scoreTexts;
 
+    public ObezmanControl winner;
+
     public override void Init()
     {
 
@@ -44,6 +51,53 @@ public class ObezmanMinigame : MinigameBase
         StartCoroutine(SwitchMazes());
         SpawnPlayers();
         AdjustCameraViewports();
+        timerIsRunning = true;
+        winner = spawnedPlayers[0];
+    }
+
+    void Update()
+    {
+        if (timerIsRunning)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining);
+            }
+            else
+            {
+                EndGame();
+                timeRemaining = 0;
+                timerIsRunning = false;
+            }
+        }
+    }
+
+    void EndGame()
+    {
+
+        List<Player> players = PlayerManager.instance.players;
+        foreach (ObezmanControl player in spawnedPlayers)
+        {
+            if(winner.sikor<player.sikor)
+            {
+                winner = player;
+            }
+        }
+
+        int anan = spawnedPlayers.IndexOf(winner);
+
+        players[anan].score += 20;
+    }
+
+    void DisplayTime(float timeToDisplay)
+    {
+        timeToDisplay += 1;
+
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        timeText.text = "Time Left\n"+string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     void SpawnBurgers()
