@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +8,16 @@ public class ObezmanBurger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            ScoreManager.instance.AddScore(amkskoru);
+            Player player = other.GetComponent<Player>(); 
 
-            Destroy(gameObject);
+            if (player != null) // Oyuncu bileşenini başarıyla aldıysanız
+            {
+                ScoreManager.instance.AddScore(player, amkskoru); // Skoru ekleyin
+            }
+
+            Destroy(gameObject); // Hamburger objesini yok edin
         }
     }
 }
