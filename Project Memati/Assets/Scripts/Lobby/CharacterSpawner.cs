@@ -42,9 +42,6 @@ public class CharacterSpawner : MonoBehaviour
 
         // Baþlangýçta start butonunu etkinleþtir
         startButton.interactable = true;
-
-        //Minigameleri seç
-        MinigameManager.instance.SelectMinigames();
     }
 
     //_ demek buton tarafýndan kullanýlacak demek
@@ -72,6 +69,17 @@ public class CharacterSpawner : MonoBehaviour
         else if (minigame == "Bombacý Mülayim")
         {
             SahneManager.instance.LoadScene("Bomberman");
+        }
+    }
+
+    public void _ShowMinigames()
+    {
+        MinigameTexts.text = "";
+        int count = 1;
+        foreach (var item in MinigameManager.instance.selectedMinigames)
+        {
+            MinigameTexts.text += count + "- " + item + "\n";
+            count++;
         }
     }
 
