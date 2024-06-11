@@ -63,9 +63,11 @@ public class CharacterSpawner : MonoBehaviour
     {
         MinigameManager.instance.SelectMinigames();
         MinigameTexts.text = "";
+        int count = 1;
         foreach (var item in MinigameManager.instance.selectedMinigames)
         {
-            MinigameTexts.text += "1- " + item + "\n";
+            MinigameTexts.text += count + "- " + item + "\n";
+            count++;
         }
     }
 

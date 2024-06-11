@@ -9,7 +9,7 @@ public class MinigameCountScrollbar : MonoBehaviour
     public TextMeshProUGUI minigameScreenText; // Minigame Screen'ine kaç tane minigame'nin seçildiðini gönderiyor. Count game objesi bunun için
 
     private bool isDragging = false;
-    
+    public int minigameCount;
 
     void Start()
     {
@@ -21,14 +21,16 @@ public class MinigameCountScrollbar : MonoBehaviour
         UpdateMinigameCount();
     }
 
+    public void LoadMinigameCount()
+    {
+        MinigameManager.instance.MaxMinigameCount = minigameCount;
+    }
     void UpdateMinigameCount()
     {
         // Scrollbar value 0 ile 1 arasýnda deðiþir, bu deðeri 4-6-8'e dönüþtür
         if (!isDragging)
         {
             float value = scrollbar.value;
-
-            int minigameCount;
             if (value <= 0.33f)
             {
                 minigameCount = 4;
@@ -44,7 +46,7 @@ public class MinigameCountScrollbar : MonoBehaviour
                 minigameCount = 8;
                 scrollbar.value = 1f;
             }
-
+            minigameCountText.text = minigameCount.ToString();
         }
     }
 
