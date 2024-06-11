@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MinigameBreak.unity
     guid: 3afe0388eb3d25f4781d4afd551abecf
+  - enabled: 1
+    path: Assets/Scenes/Bomberman.unity
+    guid: 83860b31ea18c85448e26f0ba47e73f2
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 35764fea18bbdd1478e159aa9727c689, type: 2}
