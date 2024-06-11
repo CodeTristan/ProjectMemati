@@ -13,12 +13,8 @@ public class BombaciControl : PlayerControl
 
     private void Start()
     {
-        if (playerCamera != null)
-        {
-            playerCamera.enabled = true;
-        }
-
-        UpdateScoreText();
+        rb = gameObject.GetComponent<Rigidbody>();
+        playerCamera = Camera.main;
     }
 
     protected void FixedUpdate()
@@ -38,13 +34,6 @@ public class BombaciControl : PlayerControl
         Debug.Log(targetRotationDirection.z + "vector3");
     }
 
-    void UpdateScoreText()
-    {
-        if (scoreText != null)
-        {
-            scoreText.text = "Score: " + sikor.ToString();
-        }
-    }
 
     protected float AddCameraRotationToAngle(float angle)
     {
@@ -131,12 +120,6 @@ public class BombaciControl : PlayerControl
 
     protected void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "burger")
-        {
-            Destroy(other.gameObject);
-            sikor += 10;
-            UpdateScoreText();
-        }
     }
 
     protected void OnCollisionExit(Collision collision)

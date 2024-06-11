@@ -8692,7 +8692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 0
+  speed: 7
   jumpPower: 0
   isGrounded: 0
   MainCameraTransform: {fileID: 1115272320}

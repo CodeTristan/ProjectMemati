@@ -13943,7 +13943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
       propertyPath: minigames.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
       propertyPath: minigames.Array.data[0]
@@ -13955,7 +13955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
       propertyPath: minigames.Array.data[2]
-      value: Vodoo Master
+      value: "Bombac\u0131 M\xFClayim"
       objectReference: {fileID: 0}
     - target: {fileID: 2397716017106476825, guid: d16d679fd2309c14eba56f02f9140be3, type: 3}
       propertyPath: minigames.Array.data[3]

@@ -60,9 +60,13 @@ public class CharacterSpawner : MonoBehaviour
         MinigameManager.instance.selectedMinigames.RemoveAt(0);
         if(minigame == "Obezman")
         {
-            SahneManager.instance.LoadScene("Bomberman");
+            SahneManager.instance.LoadScene("ObezmanScene");
         }
         else if(minigame == "Cliff Run")
+        {
+            SahneManager.instance.LoadScene("TempleRun");
+        }
+        else if (minigame == "Bombacý Mülayim")
         {
             SahneManager.instance.LoadScene("Bomberman");
         }
