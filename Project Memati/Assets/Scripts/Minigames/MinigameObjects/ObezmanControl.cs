@@ -13,6 +13,7 @@ public class ObezmanControl : PlayerControl
 
     private void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody>();
         if(playerCamera != null)
         {
             playerCamera.enabled = true;
