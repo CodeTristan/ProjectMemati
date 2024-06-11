@@ -66,6 +66,7 @@ public class GenerateLevel : MonoBehaviour
             foreach(var w in winners){
                 w.score+= 20;
             }
+                SahneManager.instance.LoadScene("MinigameBreak");
         }
     }
 

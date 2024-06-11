@@ -24,6 +24,7 @@ public class CharacterScoreSpawner : MonoBehaviour
         {
             // Karakteri spawnla
             currentCharacters[i] = Instantiate(players[i].CharacterPrefab, spawnPoints[i].position, Quaternion.identity);
+            currentCharacters[i].GetComponent<PlayerControl>().enabled = false;
             currentCharacters[i].transform.Rotate(0, 180, 0);
             
             // Skorlarý ayarla
