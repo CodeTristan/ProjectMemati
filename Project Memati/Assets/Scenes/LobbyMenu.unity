@@ -6323,29 +6323,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 1109705922278564, guid: 696065cc7103d7149a3833b6b062103c, type: 3}
-  - {fileID: 1784647339104494, guid: 549e081419ac96242a00791adf81363d, type: 3}
   - {fileID: 1441525330016004, guid: f5b136d0408c05f448f97ae8f727a311, type: 3}
   - {fileID: 1876184970185692, guid: a9c3b81d621d9c54d823782ce346d622, type: 3}
-  - {fileID: 107314, guid: 3331d128883a8ab4d8720ca79c2c6967, type: 3}
-  - {fileID: 153682, guid: eb237a1db54ce5f4eb8405cf15fc173f, type: 3}
-  - {fileID: 183828, guid: 2aa65e7df4e40f94daebbf9037ff43fc, type: 3}
   - {fileID: 191860, guid: cb9d02e792caa2743b74ce0fb5a31e46, type: 3}
   - {fileID: 111886, guid: adad9ac8083c77449aa6bb3e13fdf42c, type: 3}
-  - {fileID: 172688, guid: 0571fa79647548d40be8ff061050e7cf, type: 3}
-  - {fileID: 113364, guid: da1952603f21ebc4e84f27c9f3b2f0c3, type: 3}
-  - {fileID: 179034, guid: b795ee7136ffa0b4e8a971a876e6757d, type: 3}
-  - {fileID: 116112, guid: 3b6d61952ab5d044283d09d792944db9, type: 3}
   - {fileID: 171706, guid: 8e147942ae519e4438cd100443dc51f5, type: 3}
-  - {fileID: 150176, guid: 05fdc965bb2ebb2459bcf8d366eb5436, type: 3}
-  - {fileID: 159850, guid: ab198c5cf630fbc439e0de093051d30a, type: 3}
-  - {fileID: 111118, guid: bd882ac8241da4746a10ad82310fe1f5, type: 3}
-  - {fileID: 106386, guid: 61c059755b7351944a4112cd0da041f5, type: 3}
-  - {fileID: 142780, guid: cd02b8b8083fa3740a73cd9038cb3d3f, type: 3}
   - {fileID: 175192, guid: dc551629ba6012d41ae16525fe6fbe04, type: 3}
-  - {fileID: 198702, guid: 62295990745728c458135e17e5976401, type: 3}
-  - {fileID: 139570, guid: 51852959d04ad414bad055e51e77d324, type: 3}
-  - {fileID: 180246, guid: 262d5f1e79bfa874c974216ca2d7220a, type: 3}
   spawnPoints:
   - {fileID: 2052933064}
   - {fileID: 1333038827}
@@ -8233,18 +8216,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1297378658}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 12718767}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
