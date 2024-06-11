@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -10,6 +10,8 @@ public class BombaciControl : PlayerControl
     public Vector3 offset = new Vector3(0, 10, -10);
 
     public TextMeshProUGUI scoreText;
+
+    public bool hasbomb;
 
     private void Start()
     {
@@ -129,5 +131,32 @@ public class BombaciControl : PlayerControl
             isGrounded = false;
             jumpInput = 0;
         }
+    }
+
+    public void TakeBomb(Transform bombTransform)
+    {
+        // Bomba objesini oyuncunun altında konumlandır
+        bombTransform.parent = transform;
+
+
+        bombTransform.localPosition = new Vector3(0f, 2.5f, 0f);
+
+        // Bomba objesinin Rigidbody'sini kapatın, böylece oyuncuyla birlikte hareket etmez.
+        Rigidbody bombRigidbody = bombTransform.GetComponent<Rigidbody>();
+        if (bombRigidbody != null)
+        {
+            bombRigidbody.isKinematic = true;
+            bombRigidbody.detectCollisions = false;
+        }
+
+        // Bomba objesinin collider'ını devre dışı bırakabilirsiniz, böylece oyuncuyla çarpışmaz.
+        Collider bombCollider = bombTransform.GetComponent<Collider>();
+        if (bombCollider != null)
+        {
+            bombCollider.enabled = false;
+        }
+
+        // Artık oyuncunun bombayı elinde tuttuğu işareti verebilirsiniz, isteğe bağlı olarak.
+        hasbomb = true;
     }
 }
