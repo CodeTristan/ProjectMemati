@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,7 @@ public class PlayerMove : PlayerControl
         if (startMove)
             rb.velocity = new Vector3(moveInput.x * speed, rb.velocity.y + jumpInput, forwardSpeed);
     }
-    //Collision olursa bu kod içerisinde kontrol edilmesi lazým. Collision'a giriþte burasý çalýþýr.
+    //Collision olursa bu kod iï¿½erisinde kontrol edilmesi lazï¿½m. Collision'a giriï¿½te burasï¿½ ï¿½alï¿½ï¿½ï¿½r.
     protected void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -21,20 +22,26 @@ public class PlayerMove : PlayerControl
         }
         if(collision.gameObject.tag == "TempleRunBoundary")
         {
-            //Sýnýrlara çarparsa sað sol hýzý 0 oluyo sadece ileri gitsin diye. Yoksa kenarlara takýlýr.
+            //Sï¿½nï¿½rlara ï¿½arparsa saï¿½ sol hï¿½zï¿½ 0 oluyo sadece ileri gitsin diye. Yoksa kenarlara takï¿½lï¿½r.
             moveInput = Vector2.zero;
         }
         if (collision.gameObject.tag == "TempleRunObstacle")
         {
-            //KARAKTER BURADA ÖLÜYOR. Ölme animasyonunu buraya eklemelisin.
+            //KARAKTER BURADA ï¿½Lï¿½YOR. ï¿½lme animasyonunu buraya eklemelisin.
             Debug.Log("You are dead");
             forwardSpeed = 0;
             moveInput = Vector2.zero;
+            GenerateLevel.instance.playerCount--;
+        }
+
+        if(collision.gameObject.tag == "FinishLine"){
+            GenerateLevel.instance.winners.Add(player);
+            GenerateLevel.instance.playerCount--;
         }
     }
 
 
-    //Collision olursa bu kod içerisinde kontrol edilmesi lazým. Collision'dan çýkýþta burasý çalýþýr.
+    //Collision olursa bu kod iï¿½erisinde kontrol edilmesi lazï¿½m. Collision'dan ï¿½ï¿½kï¿½ï¿½ta burasï¿½ ï¿½alï¿½ï¿½ï¿½r.
     protected void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -43,19 +50,21 @@ public class PlayerMove : PlayerControl
             jumpInput = 0;
         }
     }
-    //Input system event'ine subscribe olmak için yazýlan kod. Aygýttan gelen deðeri okuyup moveInput'a atar.
+    //Input system event'ine subscribe olmak iï¿½in yazï¿½lan kod. Aygï¿½ttan gelen deï¿½eri okuyup moveInput'a atar.
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.control.device.deviceId == device.deviceId)
             moveInput = context.ReadValue<Vector2>();
     }
 
-    //Input system event'ine subscribe olmak için yazýlan kod. Eðer ki karakter yerdeyse zýplatýlýr.
+    //Input system event'ine subscribe olmak iï¿½in yazï¿½lan kod. Eï¿½er ki karakter yerdeyse zï¿½platï¿½lï¿½r.
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!isGrounded) return;
 
-        if (context.control.device.deviceId == device.deviceId)
+        if (context.control.device.deviceId == device.deviceId){
             jumpInput = jumpPower;
+        }
+            
     }
 }
