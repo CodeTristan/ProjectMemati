@@ -54,6 +54,9 @@ public class CharacterSpawner : MonoBehaviour
         for (int i = 0; i < players.Count; i++)
         {
             players[i].CharacterPrefab = characters[currentCharacterIndexes[i]];
+            players[i].playerControl = players[i].CharacterPrefab.GetComponent<PlayerControl>();
+            int index = i;
+            players[i].playerControl.player = players[index];
         }
 
         string minigame = MinigameManager.instance.selectedMinigames[0];
