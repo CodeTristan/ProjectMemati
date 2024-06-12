@@ -8,8 +8,8 @@ public class CharacterScoreSpawner : MonoBehaviour
     public static CharacterScoreSpawner instance;
     [SerializeField] private TextMeshProUGUI text;
 
-    public Transform[] spawnPoints; // Karakterlerin spawn olacaðý noktalar (borularýn üstü)
-    public TextMeshProUGUI[] scoreTexts; // Skorlarý gösterecek TextMeshProUGUI bileþenleri
+    public Transform[] spawnPoints; // Karakterlerin spawn olacaï¿½ï¿½ noktalar (borularï¿½n ï¿½stï¿½)
+    public TextMeshProUGUI[] scoreTexts; // Skorlarï¿½ gï¿½sterecek TextMeshProUGUI bileï¿½enleri
 
     private GameObject[] currentCharacters; // Mevcut karakterler
 
@@ -20,7 +20,7 @@ public class CharacterScoreSpawner : MonoBehaviour
 
         currentCharacters = new GameObject[spawnPoints.Length];
 
-        // Oyuncularý ve skorlarý baþlat
+        // Oyuncularï¿½ ve skorlarï¿½ baï¿½lat
         for (int i = 0; i < players.Count; i++)
         {
             // Karakteri spawnla
@@ -28,7 +28,7 @@ public class CharacterScoreSpawner : MonoBehaviour
             currentCharacters[i].GetComponent<PlayerControl>().enabled = false;
             currentCharacters[i].transform.Rotate(0, 180, 0);
             
-            // Skorlarý ayarla
+            // Skorlarï¿½ ayarla
             scoreTexts[i].text = "Score: " + players[i].score;
         }
 
@@ -36,7 +36,7 @@ public class CharacterScoreSpawner : MonoBehaviour
         if(MinigameManager.instance.selectedMinigames.Count == 0)
         {
             int winnerIndex = 0;
-            //winnerý bul
+            //winnerï¿½ bul
             for (int i = 0; i < players.Count; i++)
             {
                 if(winner.score < players[i].score)
@@ -52,6 +52,8 @@ public class CharacterScoreSpawner : MonoBehaviour
             Camera.main.transform.position = new Vector3(winner.playerControl.transform.position.x,
                                                             Camera.main.transform.position.y,
                                                             winner.playerControl.transform.position.z - 3f);
+
+            
         }
     }
 }

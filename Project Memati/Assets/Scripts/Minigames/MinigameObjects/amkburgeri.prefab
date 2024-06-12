@@ -40,6 +40,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6828431533928825104}
     m_Modifications:
+    - target: {fileID: -4944265360295727923, guid: b924f4d64be46ea4289ea122f1cad0da, type: 3}
+      propertyPath: m_CookingOptions
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 2602641606077459650, guid: b924f4d64be46ea4289ea122f1cad0da, type: 3}
       propertyPath: m_Name
       value: Burger

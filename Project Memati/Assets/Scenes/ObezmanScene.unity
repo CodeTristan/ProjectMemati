@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.01624039, g: 0.01472227, b: 0.0138980355, a: 1}
+  m_IndirectSpecularColor: {r: 0.004114895, g: 0.003981534, b: 0.0039181537, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3905,8 +3905,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinigameName: 
   SceneName: 
-  burger: {fileID: 8561659694380361775, guid: 3b9dbbbd0a3d32647b3e74e8611d60da, type: 3}
-  timeRemaining: 10
+  burger: {fileID: 130748, guid: c4dc818a3d0107c43a6ad73bdfca8766, type: 3}
+  timeRemaining: 30
   timeText: {fileID: 1386459071}
   timerIsRunning: 0
   firstPosition: {x: 12.5, y: 1, z: 12.5}

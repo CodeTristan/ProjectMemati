@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControl;
@@ -48,7 +47,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    //MainMenu kontrollerini etkinleþtirir. Input system.
+    //MainMenu kontrollerini etkinleï¿½tirir. Input system.
     public void EnableMainMenuActions()
     {
         mainMenuActions.Enable();
@@ -57,7 +56,7 @@ public class PlayerManager : MonoBehaviour
         mainMenuActions.CreatePlayer.CreatePlayerGamepad.performed += CreatePlayerGamepad;
     }
 
-    //MainMenu kontrollerini devredýþý býrakýr. Input system.
+    //MainMenu kontrollerini devredï¿½ï¿½ï¿½ bï¿½rakï¿½r. Input system.
     public void DisableMainMenuActions()
     {
         mainMenuActions.CreatePlayer.CreatePlayerKeyboard.performed -= CreatePlayerKeyboard;
@@ -66,7 +65,7 @@ public class PlayerManager : MonoBehaviour
         mainMenuActions.CreatePlayer.Disable();
     }
 
-    //Klavye için oyuncu yaratýr. Maksimum 2 tane oyuncu olabilir klavyeden.
+    //Klavye iï¿½in oyuncu yaratï¿½r. Maksimum 2 tane oyuncu olabilir klavyeden.
     public void CreatePlayerKeyboard(InputAction.CallbackContext context)
     {
         if (players.Count >= 4)
@@ -80,7 +79,7 @@ public class PlayerManager : MonoBehaviour
         else if (keyboardPlayerCount == 2)
             controlDevice = ControlDevice.KeyboardRight;
         else
-            controlDevice = ControlDevice.KeyboardLeft;
+            return;
 
         controlDevices.Add(controlDevice);
         Player player = new Player();
@@ -94,7 +93,7 @@ public class PlayerManager : MonoBehaviour
         PlayerSpawnButtons.instance.ActivateNextButtonGroup();
     }
 
-    //Gamepad için oyuncu yaratýr.
+    //Gamepad iï¿½in oyuncu yaratï¿½r.
     public void CreatePlayerGamepad(InputAction.CallbackContext context)
     {
         foreach (var item in players)

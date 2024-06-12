@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class GenerateLevel : MonoBehaviour
@@ -10,7 +9,6 @@ public class GenerateLevel : MonoBehaviour
     [SerializeField] private CameraMove CameraMove;
     public GameObject[] sections;
 
-    public AnimatorController animatorCon;
     public int zValue = 70;
 
     public bool creatingSection = false;
@@ -45,7 +43,7 @@ public class GenerateLevel : MonoBehaviour
 
     void Update()
     {
-        if (!creatingSection & (count < 10)){ //generates 10 sections in total
+        if (!creatingSection & (count < 4)){ //generates 10 sections in total
             creatingSection = true;
             StartCoroutine(GenerateSection());
         }

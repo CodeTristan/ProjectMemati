@@ -72,6 +72,22 @@ public class CharacterSpawner : MonoBehaviour
         }
     }
 
+    public void _StartMinigame(){
+        string minigame = MinigameManager.instance.selectedMinigames[0];
+        MinigameManager.instance.selectedMinigames.RemoveAt(0);
+        if(minigame == "Obezman")
+        {
+            SahneManager.instance.LoadScene("ObezmanScene");
+        }
+        else if(minigame == "Cliff Run")
+        {
+            SahneManager.instance.LoadScene("TempleRun");
+        }
+        else if (minigame == "Bombacı Mülayim")
+        {
+            SahneManager.instance.LoadScene("Bomberman");
+        }
+    }
     public void _ShowMinigames()
     {
         MinigameTexts.text = "";
