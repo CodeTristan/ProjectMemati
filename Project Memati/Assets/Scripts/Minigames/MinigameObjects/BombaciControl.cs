@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class BombaciControl : PlayerControl
 {
@@ -117,7 +118,14 @@ public class BombaciControl : PlayerControl
             isGrounded = true;
         }
 
-
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            BombaciControl otherPlayer = collision.gameObject.GetComponent<BombaciControl>();
+            if (otherPlayer != null && this.hasbomb && !otherPlayer.hasbomb)
+            {
+                TransferBombTo(otherPlayer);
+            }
+        }
     }
 
     protected void OnTriggerEnter(Collider other)
@@ -127,49 +135,6 @@ public class BombaciControl : PlayerControl
             isGrounded = true;
         }
 
-        if (other.gameObject.CompareTag("Player") && hasbomb)
-        {
-            BombaciControl otherPlayer = other.gameObject.GetComponent<BombaciControl>();
-            if (otherPlayer != null && !otherPlayer.hasbomb)
-            {
-                // Çarpıştığı oyuncu bombayı alır
-                otherPlayer.TakeBomb(transform);
-                // Kendi bombasını bırakır
-                DropBomb();
-            }
-
-            Debug.Log("ANAAA");
-        }
-    }
-
-    public void DropBomb()
-    {
-        // Oyuncunun elindeki bombayı bul
-        Transform bombTransform = transform.Find("bomb");
-
-        if (bombTransform != null)
-        {
-            // Bombanın ebeveynliğini sıfırla
-            bombTransform.parent = null;
-
-            // Bombanın Rigidbody'sini yeniden etkinleştir
-            Rigidbody bombRigidbody = bombTransform.GetComponent<Rigidbody>();
-            if (bombRigidbody != null)
-            {
-                bombRigidbody.isKinematic = false;
-                bombRigidbody.detectCollisions = true;
-            }
-
-            // Bombanın Collider'ını yeniden etkinleştir
-            Collider bombCollider = bombTransform.GetComponent<Collider>();
-            if (bombCollider != null)
-            {
-                bombCollider.enabled = true;
-            }
-
-            // Bombanın sahibi olmadığını belirt
-            hasbomb = false;
-        }
     }
 
     protected void OnCollisionExit(Collision collision)
@@ -185,8 +150,6 @@ public class BombaciControl : PlayerControl
     {
         // Bomba objesini oyuncunun altında konumlandır
         bombTransform.parent = transform;
-
-
         bombTransform.localPosition = new Vector3(0f, 2.5f, 0f);
 
         // Bomba objesinin Rigidbody'sini kapatın, böylece oyuncuyla birlikte hareket etmez.
@@ -204,7 +167,15 @@ public class BombaciControl : PlayerControl
             bombCollider.enabled = false;
         }
 
-        // Artık oyuncunun bombayı elinde tuttuğu işareti verebilirsiniz, isteğe bağlı olarak.
+        // Artık oyuncunun bombayı elinde tuttuğu işareti verebilirsiniz.
         hasbomb = true;
+    }
+
+    private void TransferBombTo(BombaciControl otherPlayer)
+    {
+        // Bombayı diğer oyuncuya aktar
+        Transform bombTransform = transform.GetChild(transform.childCount-1); // Bombayı bul
+        otherPlayer.TakeBomb(bombTransform);
+        hasbomb = false;
     }
 }
