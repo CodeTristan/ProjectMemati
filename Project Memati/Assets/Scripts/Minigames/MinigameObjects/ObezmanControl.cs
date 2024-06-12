@@ -11,6 +11,8 @@ public class ObezmanControl : PlayerControl
 
     public TextMeshProUGUI scoreText;
 
+    public string playername = "";
+
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -43,7 +45,7 @@ public class ObezmanControl : PlayerControl
     {
         if(scoreText != null)
         {
-            scoreText.text = "Score: " + sikor.ToString();
+            scoreText.text = string.Format("Player {0} Score: ", playername) + sikor.ToString();
         }
     }
 

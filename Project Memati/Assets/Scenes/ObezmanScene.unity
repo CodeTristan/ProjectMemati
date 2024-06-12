@@ -3932,10 +3932,11 @@ MonoBehaviour:
   - {fileID: 1086460453}
   - {fileID: 301317892}
   scoreTexts:
-  - {fileID: 1691133730}
-  - {fileID: 1405352910}
   - {fileID: 953724006}
   - {fileID: 129664034}
+  - {fileID: 1691133730}
+  - {fileID: 1405352910}
+  winner: {fileID: 0}
 --- !u!4 &1280342473
 Transform:
   m_ObjectHideFlags: 0
@@ -3976,6 +3977,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  player:
+    playerID: 0
+    playerControl: {fileID: 0}
+    ControlDevice: 0
+    CharacterPrefab: {fileID: 0}
+    score: 0
   speed: 7
   jumpPower: 3
   isGrounded: 0

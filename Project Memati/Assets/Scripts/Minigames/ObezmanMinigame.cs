@@ -53,6 +53,7 @@ public class ObezmanMinigame : MinigameBase
         AdjustCameraViewports();
         timerIsRunning = true;
         winner = spawnedPlayers[0];
+        AdjustScoreTexts();
     }
 
     void Update()
@@ -79,7 +80,7 @@ public class ObezmanMinigame : MinigameBase
         List<Player> players = PlayerManager.instance.players;
         foreach (ObezmanControl player in spawnedPlayers)
         {
-            if(winner.sikor<player.sikor)
+            if (winner.sikor < player.sikor)
             {
                 winner = player;
             }
@@ -98,7 +99,7 @@ public class ObezmanMinigame : MinigameBase
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        timeText.text = "Time Left\n"+string.Format("{0:00}:{1:00}", minutes, seconds);
+        timeText.text = "Time Left\n" + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     void SpawnBurgers()
@@ -125,6 +126,7 @@ public class ObezmanMinigame : MinigameBase
             GameObject playerCharacter = Instantiate(players[i].CharacterPrefab, playerSpawnPoints[i].position, Quaternion.identity);
             ObezmanControl obezmanControl = playerCharacter.AddComponent<ObezmanControl>();
             obezmanControl.scoreText = scoreTexts[i];
+            obezmanControl.playername=(i+1).ToString();
             playerCharacter.name = "player" + string.Format("{0}", i);
             playerCharacter.transform.Rotate(0, 180, 0);
             PlayerControl playerControl = playerCharacter.GetComponent<PlayerControl>();
@@ -138,7 +140,7 @@ public class ObezmanMinigame : MinigameBase
             obezmanControl.jumpPower = PlayerControlPrefab.jumpPower;
             obezmanControl.Init(players[i].ControlDevice, players[i].device);
 
-            obezmanControl.playerCamera= playerCameras[i];
+            obezmanControl.playerCamera = playerCameras[i];
 
             playerControl.enabled = false;
             spawnedPlayers.Add(obezmanControl);
@@ -153,19 +155,43 @@ public class ObezmanMinigame : MinigameBase
         }
     }
 
+    void AdjustScoreTexts()
+    {
+        int playercount = spawnedPlayers.Count;
+
+
+        if (playercount == 1)
+        {
+            // scoreTexts[i].transform.localPosition=
+        }
+        if (playercount == 2)
+        {
+
+            scoreTexts[1].rectTransform.anchoredPosition = new Vector3(-1804, 126, 0);
+        }
+        if (playercount == 3)
+        {
+            scoreTexts[1].rectTransform.anchoredPosition = new Vector3(-1804, 126, 0);
+            scoreTexts[2].rectTransform.anchoredPosition = new Vector3(-115, 126, 0);
+        }
+        if (playercount == 4)
+        {
+        }
+    }
+
     void AdjustCameraViewports()
     {
         int playercount = spawnedPlayers.Count;
-        for (int i = 0; i< playercount; i++)
+        for (int i = 0; i < playercount; i++)
         {
-            if(playercount==1)
+            if (playercount == 1)
             {
                 playerCameras[i].rect = new Rect(0, 0, 1, 1);
             }
 
-            else if(playercount==2)
+            else if (playercount == 2)
             {
-                playerCameras[i].rect = new Rect(0, 0.5f*i, 1, 0.5f);
+                playerCameras[i].rect = new Rect(0, 0.5f * i, 1, 0.5f);
             }
 
             else if (playercount == 3)
@@ -182,7 +208,10 @@ public class ObezmanMinigame : MinigameBase
 
             else if (playercount == 4)
             {
-                playerCameras[i].rect = new Rect(0.5f * (i % 2), 0.5f * (i / 2), 0.5f, 0.5f);
+                playerCameras[0].rect = new Rect(0, 0.5f, 0.5f, 0.5f); 
+                playerCameras[1].rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f); 
+                playerCameras[2].rect = new Rect(0, 0, 0.5f, 0.5f); 
+                playerCameras[3].rect = new Rect(0.5f, 0, 0.5f, 0.5f); 
             }
         }
     }

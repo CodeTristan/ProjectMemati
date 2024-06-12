@@ -18,7 +18,6 @@ public class Bomb : MonoBehaviour
             if (bombaci != null)
             {
                 bombaci.TakeBomb(transform);
-                Debug.Log("AAAAAAAAA");
             }
         }
     }
