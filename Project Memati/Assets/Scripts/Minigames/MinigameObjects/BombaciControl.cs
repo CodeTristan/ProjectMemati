@@ -122,6 +122,54 @@ public class BombaciControl : PlayerControl
 
     protected void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+
+        if (other.gameObject.CompareTag("Player") && hasbomb)
+        {
+            BombaciControl otherPlayer = other.gameObject.GetComponent<BombaciControl>();
+            if (otherPlayer != null && !otherPlayer.hasbomb)
+            {
+                // Çarpıştığı oyuncu bombayı alır
+                otherPlayer.TakeBomb(transform);
+                // Kendi bombasını bırakır
+                DropBomb();
+            }
+
+            Debug.Log("ANAAA");
+        }
+    }
+
+    public void DropBomb()
+    {
+        // Oyuncunun elindeki bombayı bul
+        Transform bombTransform = transform.Find("bomb");
+
+        if (bombTransform != null)
+        {
+            // Bombanın ebeveynliğini sıfırla
+            bombTransform.parent = null;
+
+            // Bombanın Rigidbody'sini yeniden etkinleştir
+            Rigidbody bombRigidbody = bombTransform.GetComponent<Rigidbody>();
+            if (bombRigidbody != null)
+            {
+                bombRigidbody.isKinematic = false;
+                bombRigidbody.detectCollisions = true;
+            }
+
+            // Bombanın Collider'ını yeniden etkinleştir
+            Collider bombCollider = bombTransform.GetComponent<Collider>();
+            if (bombCollider != null)
+            {
+                bombCollider.enabled = true;
+            }
+
+            // Bombanın sahibi olmadığını belirt
+            hasbomb = false;
+        }
     }
 
     protected void OnCollisionExit(Collision collision)

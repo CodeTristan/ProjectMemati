@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -9,18 +9,18 @@ public class CharacterSpawner : MonoBehaviour
     public static CharacterSpawner instance;
 
     public GameObject[] characters; // Prefab karakterler
-    public Transform[] spawnPoints; // Karakterlerin spawn olacağı noktalar (boruların üstü)
-    public Transform[] dropPoints;  // Karakterlerin düşeceği noktalar (boruların içi)
+    public Transform[] spawnPoints; // Karakterlerin spawn olacaÃ°Ã½ noktalar (borularÃ½n Ã¼stÃ¼)
+    public Transform[] dropPoints;  // Karakterlerin dÃ¼Ã¾eceÃ°i noktalar (borularÃ½n iÃ§i)
 
-    public Button[] nextButtons;    // Sonraki karakter butonları
-    public Button[] previousButtons; // Önceki karakter butonları
+    public Button[] nextButtons;    // Sonraki karakter butonlarÃ½
+    public Button[] previousButtons; // Ã–nceki karakter butonlarÃ½
     public Button startButton;      // Start butonu
 
     private GameObject[] currentCharacters; // Mevcut karakterler
     private int[] currentCharacterIndexes;  // Mevcut karakter indeksleri
-    private bool[] isChangingCharacter; // Her boru için karakter değişimi durumu
-    private bool isDropping = false;    // Düşme işlemi durumu
-    private int currentIndex = 0; // Şu anki karakterin indeksi
+    private bool[] isChangingCharacter; // Her boru iÃ§in karakter deÃ°iÃ¾imi durumu
+    private bool isDropping = false;    // DÃ¼Ã¾me iÃ¾lemi durumu
+    private int currentIndex = 0; // Ãu anki karakterin indeksi
 
     [Header("MinigameMenu")]
     [SerializeField] private TextMeshProUGUI MinigameTexts;
@@ -30,21 +30,21 @@ public class CharacterSpawner : MonoBehaviour
         instance = this;
         currentCharacters = new GameObject[dropPoints.Length];
         currentCharacterIndexes = new int[dropPoints.Length];
-        isChangingCharacter = new bool[dropPoints.Length]; // Her boru için bayrak başlat
+        isChangingCharacter = new bool[dropPoints.Length]; // Her boru iÃ§in bayrak baÃ¾lat
 
-        // Karakter değiştirme butonları için olayları bağla
+        // Karakter deÃ°iÃ¾tirme butonlarÃ½ iÃ§in olaylarÃ½ baÃ°la
         for (int i = 0; i < nextButtons.Length; i++)
         {
-            int index = i; // Kapatma problemi için yerel değişken kullan
+            int index = i; // Kapatma problemi iÃ§in yerel deÃ°iÃ¾ken kullan
             nextButtons[i].onClick.AddListener(() => ChangeCharacter(index, 1));
             previousButtons[i].onClick.AddListener(() => ChangeCharacter(index, -1));
         }
 
-        // Başlangıçta start butonunu etkinleştir
+        // BaÃ¾langÃ½Ã§ta start butonunu etkinleÃ¾tir
         startButton.interactable = true;
     }
 
-    //_ demek buton tarafından kullanılacak demek
+    //_ demek buton tarafÃ½ndan kullanÃ½lacak demek
     public void _StartGame()
     {
         List<Player> players = PlayerManager.instance.players;
@@ -66,7 +66,7 @@ public class CharacterSpawner : MonoBehaviour
         {
             SahneManager.instance.LoadScene("TempleRun");
         }
-        else if (minigame == "Bombacı Mülayim")
+        else if (minigame == "BombacÄ± MÃ¼layim")
         {
             SahneManager.instance.LoadScene("Bomberman");
         }
@@ -101,56 +101,56 @@ public class CharacterSpawner : MonoBehaviour
         if (currentIndex < currentCharacters.Length - 1)
         {
             currentIndex++;
-            currentCharacterIndexes[currentIndex] = 0; // İlk karakterle başla
+            currentCharacterIndexes[currentIndex] = 0; // Ãlk karakterle baÃ¾la
             SpawnCharacterAt(currentIndex, currentCharacterIndexes[currentIndex]);
         }
     }
 
-    // Mevcut oyuncuyu kaldır
+    // Mevcut oyuncuyu kaldÃ½r
     void RemovePlayer()
     {
         if (currentIndex > 0)
         {
             Destroy(currentCharacters[currentIndex]);
             currentCharacters[currentIndex] = null;
-            currentCharacterIndexes[currentIndex] = -1; // İndeksi geçersiz yap
+            currentCharacterIndexes[currentIndex] = -1; // Ãndeksi geÃ§ersiz yap
             currentIndex--;
         }
     }
 
-    // Karakteri değiştir
+    // Karakteri deÃ°iÃ¾tir
     void ChangeCharacter(int index, int direction)
     {
         if (isChangingCharacter[index] || currentCharacterIndexes[index] == -1)
         {
-            return; // Halen karakter değişimi yapılıyorsa veya geçersiz indeksse işlemi durdur
+            return; // Halen karakter deÃ°iÃ¾imi yapÃ½lÃ½yorsa veya geÃ§ersiz indeksse iÃ¾lemi durdur
         }
 
         StartCoroutine(ChangeCharacterCoroutine(index, direction));
     }
 
-    // Karakter değiştirme işlemini coroutine olarak yap
+    // Karakter deÃ°iÃ¾tirme iÃ¾lemini coroutine olarak yap
     System.Collections.IEnumerator ChangeCharacterCoroutine(int index, int direction)
     {
-        isChangingCharacter[index] = true; // Karakter değişimi işlemini başlat
+        isChangingCharacter[index] = true; // Karakter deÃ°iÃ¾imi iÃ¾lemini baÃ¾lat
 
-        // Mevcut karakteri silmeden önce null kontrolü yap
+        // Mevcut karakteri silmeden Ã¶nce null kontrolÃ¼ yap
         if (currentCharacters[index] != null)
         {
             Destroy(currentCharacters[index]);
         }
 
-        // Bir sonraki veya önceki karaktere geç
+        // Bir sonraki veya Ã¶nceki karaktere geÃ§
         currentCharacterIndexes[index] = (currentCharacterIndexes[index] + direction + characters.Length) % characters.Length;
 
-        // Yeni karakteri instantiate et ve yerine düşür
+        // Yeni karakteri instantiate et ve yerine dÃ¼Ã¾Ã¼r
         SpawnCharacterAt(index, currentCharacterIndexes[index]);
         yield return StartCoroutine(DropCharacter(currentCharacters[index], dropPoints[index].position));
 
-        isChangingCharacter[index] = false; // Karakter değişimi işlemi tamamlandı
+        isChangingCharacter[index] = false; // Karakter deÃ°iÃ¾imi iÃ¾lemi tamamlandÃ½
     }
 
-    // Belirli bir indekste karakteri spawnla ve yerine düşür
+    // Belirli bir indekste karakteri spawnla ve yerine dÃ¼Ã¾Ã¼r
     public void SpawnCharacterAt(int index, int characterIndex)
     {
         currentCharacters[index] = Instantiate(characters[characterIndex], spawnPoints[index].position, Quaternion.identity);
@@ -158,13 +158,13 @@ public class CharacterSpawner : MonoBehaviour
         StartCoroutine(DropCharacter(currentCharacters[index], dropPoints[index].position));
     }
 
-    // Karakteri belirli bir pozisyona düşür
+    // Karakteri belirli bir pozisyona dÃ¼Ã¾Ã¼r
     System.Collections.IEnumerator DropCharacter(GameObject character, Vector3 targetPosition)
     {
-        isDropping = true; // Düşme işlemi başladı
-        startButton.interactable = false; // Start butonunu devre dışı bırak
+        isDropping = true; // DÃ¼Ã¾me iÃ¾lemi baÃ¾ladÃ½
+        startButton.interactable = false; // Start butonunu devre dÃ½Ã¾Ã½ bÃ½rak
 
-        float duration = 1.0f; // Düşüş süresi
+        float duration = 1.0f; // DÃ¼Ã¾Ã¼Ã¾ sÃ¼resi
         float elapsedTime = 0;
 
         Vector3 startPosition = character.transform.position;
@@ -178,22 +178,22 @@ public class CharacterSpawner : MonoBehaviour
 
         character.transform.position = targetPosition;
 
-        isDropping = false; // Düşme işlemi tamamlandı
-        startButton.interactable = true; // Start butonunu tekrar etkinleştir
+        isDropping = false; // DÃ¼Ã¾me iÃ¾lemi tamamlandÃ½
+        startButton.interactable = true; // Start butonunu tekrar etkinleÃ¾tir
     }
 
     void Update()
     {
-        // Düşme işlemi devam ediyorsa "Start" butonuna basılmasını engelle
+        // DÃ¼Ã¾me iÃ¾lemi devam ediyorsa "Start" butonuna basÃ½lmasÃ½nÃ½ engelle
         startButton.interactable = !isDropping;
     }
 
-    // Enter tuşuna basıldığında karakterlerin spawn edilmesini ve düşmesini sağlar
+    // Enter tuÃ¾una basÃ½ldÃ½Ã°Ã½nda karakterlerin spawn edilmesini ve dÃ¼Ã¾mesini saÃ°lar
     void SpawnNextCharacter()
     {
         if (currentIndex < currentCharacters.Length)
         {
-            currentCharacterIndexes[currentIndex] = 0; // İlk karakterle başla
+            currentCharacterIndexes[currentIndex] = 0; // Ãlk karakterle baÃ¾la
             SpawnCharacterAt(currentIndex, currentCharacterIndexes[currentIndex]);
             currentIndex++;
         }
