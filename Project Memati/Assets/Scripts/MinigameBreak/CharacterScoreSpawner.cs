@@ -49,7 +49,9 @@ public class CharacterScoreSpawner : MonoBehaviour
 
             text.gameObject.SetActive(true);
             text.text = "Player " + (winnerIndex + 1) + " Wins";
-            
+            Camera.main.transform.position = new Vector3(winner.playerControl.transform.position.x,
+                                                            Camera.main.transform.position.y,
+                                                            winner.playerControl.transform.position.z - 3f);
         }
     }
 }

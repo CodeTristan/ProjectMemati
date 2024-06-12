@@ -7774,7 +7774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1648899e220064540aa9a38519e7fa86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 7
+  cameraSpeed: 6.5
 --- !u!81 &2118784829
 AudioListener:
   m_ObjectHideFlags: 0
