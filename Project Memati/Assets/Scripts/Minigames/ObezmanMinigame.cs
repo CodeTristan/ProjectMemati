@@ -129,6 +129,10 @@ public class ObezmanMinigame : MinigameBase
             playerCharacter.transform.Rotate(0, 180, 0);
             PlayerControl playerControl = playerCharacter.GetComponent<PlayerControl>();
 
+            //animasyonu kosuya gecir
+            Animator playerAnimator = playerCharacter.GetComponent<Animator>();
+            playerAnimator.Play("Fast Run");
+
             //Burada tüm playercontrol özelliklerini prefabdakilerden aktarıyoruz
             obezmanControl.speed = PlayerControlPrefab.speed;
             obezmanControl.jumpPower = PlayerControlPrefab.jumpPower;
